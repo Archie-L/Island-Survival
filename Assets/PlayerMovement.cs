@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    [Header("Inventory")]
+    public GameObject[] invMenu;
+    public PlayerCam camScript;
+
+    public bool invOpen = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,11 +63,63 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!invOpen)
+            {
+                OpenInv();
+            }
+            if (invOpen)
+            {
+                CloseInv();
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    void OpenInv()
+    {
+        for (int i = 0; i < invMenu.Length; i++)
+        {
+            invMenu[i].SetActive(true);
+        }
+        camScript.GetComponent<PlayerCam>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        StartCoroutine(Open());
+
+        Debug.Log("pressed");
+    }
+    IEnumerator Open()
+    {
+        yield return new WaitForEndOfFrame();
+        invOpen = true;
+    }
+
+    void CloseInv()
+    {
+        for (int i = 0; i < invMenu.Length; i++)
+        {
+            invMenu[i].SetActive(false);
+        }
+        camScript.GetComponent<PlayerCam>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        StartCoroutine(Close());
+
+        Debug.Log("pressed2");
+    }
+    IEnumerator Close()
+    {
+        yield return new WaitForEndOfFrame();
+        invOpen = false;
     }
 
     private void MyInput()

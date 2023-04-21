@@ -13,6 +13,17 @@ public class Slot : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
     }
 
+    private void Update()
+    {
+        if(transform.childCount > 0)
+        {
+            if (transform.GetChild(0).GetComponent<InventoryItem>().amount <= 0)
+            {
+                Destroy(transform.GetChild(0).gameObject);
+            }
+        }
+    }
+
     public void SetID()
     {
         manager.currentSlot = ID;
