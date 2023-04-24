@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
         InitializeInventory();
         SetSlotsIDs();
         CheckSlots();
+        GetSlot();
     }
 
     private void Update()
@@ -85,6 +86,14 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    void GetSlot()
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            Debug.Log(slots[i].GetChild(21));
+        }
+    }
+
     public void CraftItem(int[] IDs, int[] IDsAmounts, GameObject outCome, int outComeAmount)
     {
         bool[] collected = new bool[IDs.Length];
@@ -127,22 +136,8 @@ public class InventoryManager : MonoBehaviour
         {
             if (isFull[x] == false)
             {
-                if (slots[x].GetChild(0).GetComponent<InventoryItem>().itemData.ID == item.GetComponent<InventoryItem>().itemData.ID)
-                {
-                    Debug.Log("found stone");
-                }
-
-                /*
+                Instantiate(item, slots[x]);
                 CheckSlots();
-                if (item.GetComponent<InventoryItem>().itemData.ID == slots[x].GetChild(0).GetComponent<InventoryItem>().itemData.ID)
-                {
-                    Debug.Log("item alr exists");
-                }
-                else if (item.GetComponent<InventoryItem>().itemData.ID != slots[x].GetChild(0).GetComponent<InventoryItem>().itemData.ID)
-                {
-                    Instantiate(item, slots[x]);
-                }
-                */
 
                 return;
             }
