@@ -31,7 +31,6 @@ public class tool : MonoBehaviour
             {
                 if (hit.collider.tag == ("stone"))
                 {
-                    Debug.Log("poopoo");
                     if (!isAxe)
                     {
                         if (type == "stone")
@@ -57,7 +56,31 @@ public class tool : MonoBehaviour
                 }
                 if (hit.collider.tag == ("wood"))
                 {
-                    Debug.Log("peepee");
+                    if (isAxe)
+                    {
+                        if (type == "stone")
+                        {
+                            multiplier = 1;
+                        }
+                        if (type == "metal")
+                        {
+                            multiplier = 2;
+                        }
+                    }
+                    if (!isAxe)
+                    {
+                        if (type == "rock")
+                        {
+                            multiplier = 0.5f;
+                        }
+                        else
+                        {
+                            multiplier = 0.1f;
+                        }
+                    }
+
+                    damage = Random.Range(5, 15) * multiplier;
+                    hit.collider.GetComponent<tree>().health -= damage;
                 }
             }
         }
