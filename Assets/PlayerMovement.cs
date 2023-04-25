@@ -38,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Inventory")]
     public GameObject[] invMenu;
+    public GameObject craftMenu;
     public PlayerCam camScript;
+
+    public bool craftOpen = false;
 
     public bool invOpen = false;
 
@@ -55,8 +58,11 @@ public class PlayerMovement : MonoBehaviour
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        MyInput();
-        SpeedControl();
+        if (!invOpen)
+        {
+            MyInput();
+            SpeedControl();
+        }
 
         // handle drag
         if (grounded)
@@ -75,11 +81,25 @@ public class PlayerMovement : MonoBehaviour
                 CloseInv();
             }
         }
+
+        craftMenu = GameObject.FindGameObjectWithTag("craftMenu");
+
+        if (craftMenu == enabled)
+        {
+            craftOpen = true;
+        }
+        else
+        {
+            craftOpen = false;
+        }
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (!invOpen)
+        {
+            MovePlayer();
+        }
     }
 
     void OpenInv()
@@ -104,9 +124,16 @@ public class PlayerMovement : MonoBehaviour
 
     void CloseInv()
     {
-        for (int i = 0; i < invMenu.Length; i++)
+        if (craftOpen)
         {
-            invMenu[i].SetActive(false);
+            craftMenu.SetActive(false);
+        }
+        else
+        {
+            for (int i = 0; i < invMenu.Length; i++)
+            {
+                invMenu[i].SetActive(false);
+            }
         }
         camScript.GetComponent<PlayerCam>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;

@@ -5,8 +5,7 @@ using UnityEngine;
 public class tree : MonoBehaviour
 {
     public float health;
-    public GameObject log, treeModel;
-    public bool broken = false;
+    public GameObject log;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +24,6 @@ public class tree : MonoBehaviour
 
     void BreakTree()
     {
-        if (!broken)
-        {
-            Instantiate(log, new Vector3(0, 0, 0), Quaternion.identity);
-            Destroy(treeModel);
-            broken = true;
-        }
+        Instantiate(log, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

@@ -7,7 +7,6 @@ public class itemPickUp : MonoBehaviour
     public int Amount;
     public InventoryManager manager;
     public GameObject item;
-    public int[] ID;
 
     private void Start()
     {
