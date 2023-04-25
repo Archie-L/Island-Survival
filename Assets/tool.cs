@@ -5,8 +5,10 @@ using UnityEngine;
 public class tool : MonoBehaviour
 {
     public Animator anim;
-    public List<string> type;
+    public string type;
     public bool isAxe;
+    private float damage;
+    private float multiplier;
 
     // Update is called once per frame
     void Update()
@@ -30,6 +32,28 @@ public class tool : MonoBehaviour
                 if (hit.collider.tag == ("stone"))
                 {
                     Debug.Log("poopoo");
+                    if (!isAxe)
+                    {
+                        if (type == "stone")
+                        {
+                            multiplier = 1;
+                        }
+                        if (type == "metal")
+                        {
+                            multiplier = 2;
+                        }
+                        if (type == "rock")
+                        {
+                            multiplier = 0.5f;
+                        }
+                    }
+                    if (isAxe)
+                    {
+                        multiplier = 0.1f;
+                    }
+
+                    damage = Random.Range(5, 15) * multiplier;
+                    hit.collider.GetComponent<tree>().health -= damage;
                 }
                 if (hit.collider.tag == ("wood"))
                 {
