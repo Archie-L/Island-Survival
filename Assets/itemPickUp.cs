@@ -27,5 +27,6 @@ public class itemPickUp : MonoBehaviour
     {
         manager.AddItem(item);
         item.GetComponent<InventoryItem>().amount = Amount;
+        Destroy(this.gameObject);
     }
 }

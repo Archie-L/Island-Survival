@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   IDs: 0000000002000000
-  IDsAmounts: 0200000001000000
-  outCome: {fileID: 4794089717290270715, guid: 0dc1481211a3d6044a550df81313c454, type: 3}
+  IDsAmounts: 0500000005000000
+  outCome: {fileID: 4794089717290270715, guid: 73d8bde45835a3d429e776be36f72cb9, type: 3}
   outComeAmount: 1

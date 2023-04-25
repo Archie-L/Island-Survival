@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StonePick
   m_EditorClassIdentifier: 
   IDs: 0000000002000000
-  IDsAmounts: 0200000001000000
+  IDsAmounts: 0500000005000000
   outCome: {fileID: 4794089717290270715, guid: 60ea4bcee6497764f93fe285dccc93af, type: 3}
   outComeAmount: 1
