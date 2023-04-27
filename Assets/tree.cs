@@ -29,11 +29,11 @@ public class tree : MonoBehaviour
     {
         if(this.gameObject.tag == ("stone"))
         {
-            Instantiate(log, new Vector3(10, 1, 0), Quaternion.identity);
+            Instantiate(log, new Vector3(10, 1, 1), Quaternion.identity);
         }
         if (this.gameObject.tag == ("wood"))
         {
-            Instantiate(log, new Vector3(0, 5, 0), Quaternion.identity);
+            Instantiate(log, new Vector3(0, 2, 0), Quaternion.identity);
         }
         Destroy(this.gameObject);
     }

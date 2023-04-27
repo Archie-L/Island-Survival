@@ -143,7 +143,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660856703831171992}
   m_LocalRotation: {x: -0.09229579, y: 0.09229579, z: -0.70105743, w: 0.70105743}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0168}
+  m_LocalPosition: {x: 0, y: 0, z: 0.01474}
   m_LocalScale: {x: 0.00024007991, y: 0.00024007988, z: 0.00024008001}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0628, y: 0.00252}
+  m_AnchoredPosition: {x: -0.06335, y: 0.00252}
   m_SizeDelta: {x: 75, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3963473772771184958
@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform: {fileID: 0}
+  panel: {fileID: 4889843887923439444}
 --- !u!1 &3674610663439570723
 GameObject:
   m_ObjectHideFlags: 0

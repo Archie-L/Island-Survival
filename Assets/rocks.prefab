@@ -283,10 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8dbd29622511f4aba4b834b89e3004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  billboardType: 0
-  lockX: 0
-  lockY: 0
-  lockZ: 0
+  camTransform: {fileID: 0}
+  panel: {fileID: 785952680359871293}
 --- !u!1 &3870721826953586479
 GameObject:
   m_ObjectHideFlags: 0

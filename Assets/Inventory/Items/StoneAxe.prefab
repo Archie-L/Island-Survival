@@ -92,6 +92,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 9db81239b5aefe845848b4ad744a7814, type: 2}
   amountTxt: {fileID: 8345212192805553998}
+  activeObject: {fileID: 6529193959425056948, guid: b147b43c17385f24193f9750e76b393a,
+    type: 3}
+  emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
+    type: 3}
   amount: 1
 --- !u!1 &7512098391890052217
 GameObject:

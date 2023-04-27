@@ -20,13 +20,17 @@ public class InventoryManager : MonoBehaviour
 
     public int currentSlot;
 
+    public GameObject emptyObject;
+    private GameObject activeEmpty;
+
 
     private void Start()
     {
         InitializeInventory();
         SetSlotsIDs();
         CheckSlots();
-        GetSlot();
+
+        activeEmpty = GameObject.Find("Activated Object");
     }
 
     private void Update()
@@ -43,6 +47,92 @@ public class InventoryManager : MonoBehaviour
         {
             cursor.gameObject.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (slotsHotbar[0].transform.childCount > 0)
+            {
+                slotsHotbar[0].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[0].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (slotsHotbar[1].transform.childCount > 0)
+            {
+                slotsHotbar[1].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[1].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (slotsHotbar[2].transform.childCount > 0)
+            {
+                slotsHotbar[2].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[2].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (slotsHotbar[3].transform.childCount > 0)
+            {
+                slotsHotbar[3].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[3].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (slotsHotbar[4].transform.childCount > 0)
+            {
+                slotsHotbar[4].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[4].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (slotsHotbar[5].transform.childCount > 0)
+            {
+                slotsHotbar[5].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[5].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            if (slotsHotbar[6].transform.childCount > 0)
+            {
+                slotsHotbar[6].GetChild(0).GetComponent<InventoryItem>().ActivateObject();
+            }
+            if (slotsHotbar[6].transform.childCount == 0)
+            {
+                NoObject();
+            }
+        }
+    }
+    public void NoObject()
+    {
+        Destroy(activeEmpty.transform.GetChild(0).gameObject);
+
+        var Object = Instantiate(emptyObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+
+        Object.transform.parent = activeEmpty.transform;
     }
 
     void InitializeInventory()
@@ -83,14 +173,6 @@ public class InventoryManager : MonoBehaviour
             {
                 isFull[i] = false;
             }
-        }
-    }
-
-    void GetSlot()
-    {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            Debug.Log(slots[i].GetChild(21));
         }
     }
 
