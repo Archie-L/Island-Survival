@@ -27,14 +27,7 @@ public class tree : MonoBehaviour
 
     void BreakTree()
     {
-        if(this.gameObject.tag == ("stone"))
-        {
-            Instantiate(log, new Vector3(10, 1, 1), Quaternion.identity);
-        }
-        if (this.gameObject.tag == ("wood"))
-        {
-            Instantiate(log, new Vector3(0, 2, 0), Quaternion.identity);
-        }
+        Instantiate(log, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 }

@@ -9,11 +9,12 @@ public class tool : MonoBehaviour
     public bool isAxe;
     private float damage;
     private float multiplier;
+    public bool hasSwung;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !hasSwung)
         {
             anim.SetTrigger("swing");
             Invoke("ShootRay", 0.2f);
