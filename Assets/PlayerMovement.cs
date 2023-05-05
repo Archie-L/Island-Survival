@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,8 +46,31 @@ public class PlayerMovement : MonoBehaviour
 
     public bool invOpen = false;
 
+    [Header("Stats")]
+    public int Health;
+    public int maxHealth;
+    public int Hunger;
+    public int maxHunger;
+    public int Water;
+    public int maxWater;
+
+    private float nextActionTime = 0.0f;
+    public float period = 1f;
+
+    public bool hungry;
+    public bool thirsty;
+
+
+    private Slider hpBar;
+    private Slider hungerBar;
+    private Slider thirstBar;
+
     private void Start()
     {
+        hpBar = GameObject.FindGameObjectWithTag("hpBar").GetComponent<Slider>();
+        hungerBar = GameObject.FindGameObjectWithTag("hungerBar").GetComponent<Slider>();
+        thirstBar = GameObject.FindGameObjectWithTag("thirstBar").GetComponent<Slider>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -92,6 +116,56 @@ public class PlayerMovement : MonoBehaviour
         {
             craftOpen = false;
         }
+
+
+        hpBar.value = Health;
+        hungerBar.value = Hunger;
+        thirstBar.value = Water;
+
+        if (Time.time > nextActionTime)
+        {
+            nextActionTime += period;
+
+            if (!thirsty || !hungry)
+            {
+                Hunger -= 1;
+                Water -= 1;
+            }
+            if(thirsty || hungry)
+            {
+                Health -= 5;
+            }
+        }
+
+        if(Water <= 0)
+        {
+            thirsty = true;
+        }
+        if (Hunger <= 0)
+        {
+            hungry = true;
+        }
+        if (Water > 0)
+        {
+            thirsty = false;
+        }
+        if (Hunger > 0)
+        {
+            hungry = false;
+        }
+
+        if(Water > maxWater)
+        {
+            Water = maxWater;
+        }
+        if (Hunger > maxHunger)
+        {
+            Hunger = maxHunger;
+        }
+        if (Health > maxHealth)
+        {
+            Health = maxHealth;
+        }
     }
 
     private void FixedUpdate()
@@ -100,6 +174,16 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayer();
         }
+    }
+
+    void HungerManager()
+    {
+        
+    }
+
+    void WaterManager()
+    {
+
     }
 
     void OpenInv()

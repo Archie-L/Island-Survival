@@ -7,13 +7,21 @@ public class Animal : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float range;
+    public GameObject Neck;
 
     public Transform centrePoint;
 
     void Start()
     {
+        float evilCow;
         agent = GetComponent<NavMeshAgent>();
 
+        evilCow = Random.Range(1, 100);
+
+        if(evilCow == 100)
+        {
+            Neck.GetComponent<LookAt>().enabled = true;
+        }
     }
 
     void Update()

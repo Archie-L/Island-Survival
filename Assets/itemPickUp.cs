@@ -10,7 +10,7 @@ public class itemPickUp : MonoBehaviour
 
     private void Start()
     {
-        Amount = Random.Range(5, 15);
+        Amount = Random.Range(2, 5);
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
     }
 

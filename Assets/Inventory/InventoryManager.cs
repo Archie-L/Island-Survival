@@ -206,26 +206,33 @@ public class InventoryManager : MonoBehaviour
         {
             collectedSlots[i].GetComponent<InventoryItem>().amount -= IDsAmounts[i];
         }
+        /*
         for (int i = 0; i < outComeAmount; i++)
         {
             AddItem(outCome);
         }
+        */
+
+        AddItem(outCome, outComeAmount);
     }
 
-    public void AddItem(GameObject item)
+    public void AddItem(GameObject item, int amount)
     {
-        for (int x = 0; x < slots.Count; x++)
+        for (int i = 0; i < amount; i++)
         {
-            if (isFull[x] == false)
+            for (int x = 0; x < slots.Count; x++)
             {
-                Instantiate(item, slots[x]);
-                CheckSlots();
+                if (isFull[x] == false)
+                {
+                    Instantiate(item, slots[x]);
+                    CheckSlots();
 
-                return;
-            }
-            else
-            {
-                Debug.Log("Slot full");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("Slot full");
+                }
             }
         }
 
