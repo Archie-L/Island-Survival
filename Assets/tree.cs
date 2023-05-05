@@ -15,6 +15,8 @@ public class tree : MonoBehaviour
         hpBar = gameObject.GetComponentInChildren<Slider>();
     }
 
+    private float lastHp;
+
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +24,9 @@ public class tree : MonoBehaviour
         {
             BreakTree();
         }
-        hpBar.value = health;
+        if(lastHp != health) hpBar.value = health;
+
+        lastHp = health;
     }
 
     void BreakTree()

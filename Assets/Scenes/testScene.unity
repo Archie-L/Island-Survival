@@ -3888,12 +3888,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3118ed447c5347e4eb2b937737338725, type: 3}
---- !u!1 &877185115 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4794089717290270715, guid: e1db2eee0d39024419ef92e58aed6b1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 776439407}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &877185116 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1899883642192730521, guid: e1db2eee0d39024419ef92e58aed6b1a,
@@ -5456,9 +5450,9 @@ RectTransform:
   m_Father: {fileID: 1174549909}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -598.04626, y: -325.32608}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 163.28375, y: 85.34395}
   m_SizeDelta: {x: 326.5675, y: 170.6879}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168934184
@@ -9701,7 +9695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Amount: 0
   manager: {fileID: 0}
-  item: {fileID: 877185115}
+  item: {fileID: 4794089717290270715, guid: e1db2eee0d39024419ef92e58aed6b1a, type: 3}
   txt: {fileID: 1171755138}
 --- !u!135 &4086419927324524070
 SphereCollider:
@@ -10508,7 +10502,7 @@ PrefabInstance:
     - target: {fileID: 1296739735441451350, guid: e359dad949b398944922bcedd4a42578,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5144355667749431092, guid: e359dad949b398944922bcedd4a42578,
         type: 3}
