@@ -32,17 +32,9 @@ public class TerrainManager : MonoBehaviour
             terrain = Terrain.activeTerrain;
         }
 
+        terrainSeed = Random.Range(0, 10000);
+
         GenerateTerrain();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("e"))
-        {
-            terrainSeed = Random.Range(0, 10000);
-            GenerateTerrain();
-
-        }
     }
 
     private void GenerateTerrain()

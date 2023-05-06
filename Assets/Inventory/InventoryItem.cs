@@ -8,8 +8,9 @@ public class InventoryItem : MonoBehaviour
 {
     public Item itemData;
     public TMP_Text amountTxt;
-    public GameObject activeObject;
+    public GameObject activeObject, emptyObject;
     private GameObject activeEmpty;
+    public bool canBeActive;
 
     public int amount = 1;
 
@@ -35,8 +36,15 @@ public class InventoryItem : MonoBehaviour
     {
         Destroy(activeEmpty.transform.GetChild(0).gameObject);
 
-        var Object = Instantiate(activeObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-
-        Object.transform.parent = activeEmpty.transform;
+        if (canBeActive)
+        {
+            var Object = Instantiate(activeObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Object.transform.parent = activeEmpty.transform;
+        }
+        else
+        {
+            var Object = Instantiate(emptyObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Object.transform.parent = activeEmpty.transform;
+        }
     }
 }

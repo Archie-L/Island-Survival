@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 2719888045361595613}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -15.000001, z: 0}
 --- !u!33 &3766600765666812625
 MeshFilter:
@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8dbd29622511f4aba4b834b89e3004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  panel: {fileID: 4889843887923439444}
 --- !u!1 &3674610663439570723
 GameObject:
   m_ObjectHideFlags: 0

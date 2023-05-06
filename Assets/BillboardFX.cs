@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BillboardFX : MonoBehaviour
 {
-    /*
     public Transform camTransform;
     private GameObject player;
     public GameObject panel;
@@ -31,5 +30,4 @@ public class BillboardFX : MonoBehaviour
 
         transform.LookAt(camTransform);
     }
-    */
 }

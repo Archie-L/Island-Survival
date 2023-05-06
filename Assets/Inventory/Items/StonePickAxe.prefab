@@ -96,6 +96,7 @@ MonoBehaviour:
     type: 3}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}
+  canBeActive: 1
   amount: 1
 --- !u!1 &7512098391890052217
 GameObject:
