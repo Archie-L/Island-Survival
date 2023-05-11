@@ -7,6 +7,9 @@ public class Slot : MonoBehaviour
     public int ID;
 
     public InventoryManager manager;
+    public chestScript chestManager;
+
+    public bool isChest;
 
     private void Start()
     {

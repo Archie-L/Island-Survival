@@ -8,8 +8,13 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject inventory;
 
+    public bool chestOpen;
+
+    private GameObject player;
+
     public Transform inventorySlotHolder;
     public Transform inventoryHotbarSlotHolder;
+    public Transform currentChest;
 
     public Transform cursor;
     public Vector3 offset;
@@ -17,6 +22,7 @@ public class InventoryManager : MonoBehaviour
     public List<bool> isFull;
     public List<Transform> slots;
     public List<Transform> slotsHotbar;
+    public List<Transform> chestSlots;
 
     public int currentSlot;
 
@@ -29,6 +35,8 @@ public class InventoryManager : MonoBehaviour
         InitializeInventory();
         SetSlotsIDs();
         CheckSlots();
+
+        player = GameObject.FindGameObjectWithTag("Player");
 
         activeEmpty = GameObject.Find("Activated Object");
     }
@@ -126,6 +134,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
     public void NoObject()
     {
         Destroy(activeEmpty.transform.GetChild(0).gameObject);
@@ -152,6 +161,41 @@ public class InventoryManager : MonoBehaviour
 
     void SetSlotsIDs()
     {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].GetComponent<Slot>() != null)
+            {
+                slots[i].GetComponent<Slot>().ID = i;
+            }
+        }
+    }
+    public void SetChestIDs()
+    {
+        for (int i = 0; i < currentChest.childCount; i++)
+        {
+            slots.Add(currentChest.GetChild(i));
+            chestSlots.Add(currentChest.GetChild(i));
+            isFull.Add(false);
+        }
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].GetComponent<Slot>() != null)
+            {
+                slots[i].GetComponent<Slot>().ID = i;
+            }
+        }
+    }
+
+    public void RemoveChest()
+    {
+        for (int i = 0; i < currentChest.childCount; i++)
+        {
+            slots.Remove(currentChest.GetChild(i));
+            chestSlots.Remove(currentChest.GetChild(i));
+            isFull.Remove(false);
+        }
+
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots[i].GetComponent<Slot>() != null)

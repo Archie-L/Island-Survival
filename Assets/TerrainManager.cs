@@ -25,6 +25,12 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private Terrain terrain;
     [SerializeField] private TerrainCollider terrainCollider;
 
+    [SerializeField] private float monumentminheight;
+    [SerializeField] private float monumentmaxheight;
+    [SerializeField] private GameObject[] monuments;
+    [SerializeField] private float monumentscale;
+    [SerializeField] private int monumentlowerdensity;
+
     private void Start()
     {
         if (terrain == null)
@@ -47,9 +53,62 @@ public class TerrainManager : MonoBehaviour
 
         // Apply the terrain data to the terrain
         Random.InitState(terrainSeed);
-        List<GameObject> tres = new List<GameObject>();
         terrain.terrainData = terrainData;
         terrainCollider.terrainData = terrainData;
+
+        GenerateMonuments();
+        StartCoroutine(ExecuteAfterTime(0.1f));
+    }
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        GenerateTree();
+    }
+
+    public void GenerateMonuments()
+    {
+        List<GameObject> monus = new List<GameObject>();
+
+        for (int x = 0; x < terrainWidth; x++)
+        {
+            for (int z = 0; z < terrainLength; z++)
+            {
+                float random = Random.Range(0f, 1f);
+                if (random < Mathf.PerlinNoise((x * monumentscale) + 5600, (z * monumentscale) + 5600) && Random.Range(1, monumentlowerdensity) == 1)
+                {
+                    // Instantiate random tree at the position of current point
+                    int randomIndex = Random.Range(0, monuments.Length);
+                    int randRot = Random.Range(0, 359);
+                    GameObject monu = Instantiate(monuments[randomIndex], new Vector3(x, 100, z), Quaternion.Euler(0f, randRot, 0f));
+                    monus.Add(monu);
+                    monu.transform.localScale *= Random.Range(0.8f, 1.2f); // Scale the tree randomly
+                }
+
+            }
+        }
+        foreach (GameObject m in monus)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(m.transform.position, -m.transform.up, out hit, 1000))
+            {
+                m.transform.position = hit.point;
+            }
+            if (m.transform.position.y < monumentminheight || m.transform.position.y >= monumentmaxheight)
+            {
+                Destroy(m);
+            }
+        }
+        /*
+        var test = GameObject.FindObjectOfType<MatchTerrainToColliders>();
+        test.GetComponent<MatchTerrainToColliders>(). BringTerrainToUndersideOfCollider();
+        */
+    }
+
+    public void GenerateTree()
+    {
+        List<GameObject> tres = new List<GameObject>();
+
         for (int x = 0; x < terrainWidth; x++)
         {
             for (int z = 0; z < terrainLength; z++)
@@ -79,7 +138,6 @@ public class TerrainManager : MonoBehaviour
             }
         }
     }
-
 
     private TerrainData GenerateTerrainData()
     {

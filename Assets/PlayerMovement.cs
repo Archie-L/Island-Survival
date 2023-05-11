@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
     public bool craftOpen = false;
 
     public bool invOpen = false;
+    public bool chestOpen = false;
+
+    public InventoryManager manager;
 
     [Header("Stats")]
     public int Health;
@@ -71,14 +74,34 @@ public class PlayerMovement : MonoBehaviour
         hungerBar = GameObject.FindGameObjectWithTag("hungerBar").GetComponent<Slider>();
         thirstBar = GameObject.FindGameObjectWithTag("thirstBar").GetComponent<Slider>();
 
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
         readyToJump = true;
     }
 
+    public Transform chest;
+
     private void Update()
     {
+        Transform camTransform = Camera.main.transform;
+        RaycastHit hit;
+
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 6))
+        {
+            if (hit.collider.tag == ("Chest") && Input.GetKeyDown(KeyCode.E))
+            {
+                chest = hit.transform.GetChild(0);
+                manager.currentChest = chest.transform.GetChild(0);
+                manager.SetChestIDs();
+                chest.gameObject.SetActive(true);
+                chestOpen = true;
+                OpenInv();
+            }
+        }
+
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -186,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OpenInv()
+    public void OpenInv()
     {
         for (int i = 0; i < invMenu.Length; i++)
         {
@@ -211,6 +234,17 @@ public class PlayerMovement : MonoBehaviour
         if (craftOpen)
         {
             craftMenu.SetActive(false);
+        }
+        if (chestOpen)
+        {
+            chestOpen = false;
+            chest.gameObject.SetActive(false);
+            manager.RemoveChest();
+
+            for (int i = 0; i < invMenu.Length; i++)
+            {
+                invMenu[i].SetActive(false);
+            }
         }
         else
         {
