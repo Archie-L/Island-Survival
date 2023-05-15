@@ -19,29 +19,27 @@ public class plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        Transform camTransform = Camera.main.transform;
+        RaycastHit hit;
 
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 2))
         {
-            txt.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (hit.collider.tag == ("plant"))
             {
-                AddToInv();
+                txt.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    AddToInv();
+                }
+            }
+            else
+            {
+                txt.SetActive(false);
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            txt.SetActive(false);
-        }
-    }
     private void AddToInv()
     {
         manager.AddItem(item);

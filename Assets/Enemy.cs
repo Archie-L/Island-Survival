@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float range;
-
+    public float health;
     public Transform centrePoint;
 
     void Start()
@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        if (health <= 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

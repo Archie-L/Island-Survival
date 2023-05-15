@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 807697210103903767}
   - component: {fileID: 807697210103903766}
-  - component: {fileID: 807697210103903765}
+  - component: {fileID: 5560271635430588742}
   m_Layer: 0
   m_Name: fern
-  m_TagString: Untagged
+  m_TagString: plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4974009075497452432}
   - {fileID: 3711077215885362216}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &807697210103903766
 MonoBehaviour:
@@ -52,7 +52,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   item: {fileID: 4794089717290270715, guid: e1db2eee0d39024419ef92e58aed6b1a, type: 3}
   txt: {fileID: 3711077216118364337}
---- !u!135 &807697210103903765
+--- !u!135 &5560271635430588742
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,8 +63,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 41.010685
-  m_Center: {x: 0, y: 17.65, z: 0}
+  m_Radius: 14.02
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3711077215885362217
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - wood
+  - stone
+  - Manager
+  - craftMenu
+  - hpBar
+  - thirstBar
+  - hungerBar
+  - panel
+  - plant
+  - arm or leg
   layers:
   - Default
   - TransparentFX

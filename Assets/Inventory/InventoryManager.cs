@@ -259,6 +259,44 @@ public class InventoryManager : MonoBehaviour
         //AddItem(outCome, outComeAmount);
     }
 
+    public bool HasItem(int itemID)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            Transform slot = slots[i];
+            if (slot.childCount > 0)
+            {
+                InventoryItem item = slot.GetChild(0).GetComponent<InventoryItem>();
+                if (item.itemData.ID == itemID && item.amount >= 1)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public void RemoveItem(int itemID, int amountToTake)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            Transform slot = slots[i];
+            if (slot.childCount > 0)
+            {
+                InventoryItem item = slot.GetChild(0).GetComponent<InventoryItem>();
+                if (item.itemData.ID == itemID)
+                {
+                    item.amount -= amountToTake;
+                    if (item.amount <= 0)
+                    {
+                        Destroy(slot.GetChild(0).gameObject);
+                    }
+                }
+            }
+        }
+    }
+
     public void AddItem(GameObject item)
     {
         for (int x = 0; x < slots.Count; x++)
