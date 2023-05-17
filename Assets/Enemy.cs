@@ -9,21 +9,51 @@ public class Enemy : MonoBehaviour
     public float range;
     public float health;
     public Transform centrePoint;
+    public Animator anim;
+    public Transform player;
+    public bool patrolling, follow;
+    public Transform[] points;
+    private int destPoint = 0;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (patrolling)
+        {
+            agent.autoBraking = false;
+            patrol();
+        }
     }
 
     void Update()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (patrolling && !follow)
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point))
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                patrol();
+        }
+        else if(follow && !patrolling)
+        {
+            agent.SetDestination(player.position);
+
+            if (agent.remainingDistance <= 7)
+                anim.SetBool("walking", false);
+            if (agent.remainingDistance > 7)
+                anim.SetBool("walking", true);
+
+        }
+        else if (!patrolling && !follow)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                agent.SetDestination(point);
+                Vector3 point;
+                if (RandomPoint(centrePoint.position, range, out point))
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+                    agent.SetDestination(point);
+                }
             }
         }
 
@@ -31,6 +61,16 @@ public class Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void patrol()
+    {
+        if (points.Length == 0)
+            return;
+
+        agent.destination = points[destPoint].position;
+
+        destPoint = (destPoint + 1) % points.Length;
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

@@ -57,13 +57,7 @@ public class TerrainManager : MonoBehaviour
         terrainCollider.terrainData = terrainData;
 
         GenerateMonuments();
-        StartCoroutine(ExecuteAfterTime(0.1f));
-    }
-    IEnumerator ExecuteAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        GenerateTree();
+        Invoke("GenerateTree", 0.1f);
     }
 
     public void GenerateMonuments()
