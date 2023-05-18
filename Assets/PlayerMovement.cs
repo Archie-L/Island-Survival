@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
+    bool swimming;
 
     public Transform orientation;
 
@@ -273,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded || Input.GetKey(jumpKey) && readyToJump && swimming)
         {
             readyToJump = false;
 
@@ -319,5 +320,24 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Water")
+        {
+            swimming = true;
+            jumpForce = 1;
+            Physics.gravity = new Vector3(0, 0f, 0);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Water")
+        {
+            swimming = false;
+            jumpForce = 8;
+            Physics.gravity = new Vector3(0, -9.81F, 0);
+        }
     }
 }

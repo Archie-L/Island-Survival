@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4288091634433629601
 MonoBehaviour:
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb4a0d5c0204a046a23b81206d20dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shilouette: {fileID: 2753229402380522908, guid: 56e6056a197ed1d488e54482a58c0a14,
-    type: 3}
+  blue: {fileID: 2753229402380522908, guid: 56e6056a197ed1d488e54482a58c0a14, type: 3}
+  red: {fileID: 2753229402380522908, guid: aa8d53959a0833248b2e9f1a5c745051, type: 3}
   acutalObj: {fileID: 2753229402380522908, guid: 2656d830bb3269d4f8f284b75d22f82b,
     type: 3}
   player: {fileID: 0}

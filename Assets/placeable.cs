@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class placeable : MonoBehaviour
 {
+    public Material red;
+    public Material blue;
     public GameObject shilouette;
     public GameObject acutalObj;
     public GameObject player;
     public bool active;
+    private bool canPlace;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class placeable : MonoBehaviour
 
         if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 6))
         {
-            if (hit.collider.tag == ("Ground") && !active)
+            if(!active)
             {
                 var clone = Instantiate(shilouette, hit.point, Quaternion.Euler(-90f, camTransform.eulerAngles.y, 180f));
                 clone.transform.parent = this.transform;
@@ -37,7 +40,18 @@ public class placeable : MonoBehaviour
             obj.transform.position = hit.point;
             obj.transform.rotation = Quaternion.Euler(-90, camTransform.eulerAngles.y, 180);
 
-            if (Input.GetMouseButtonDown(0))
+            if (hit.collider.tag == ("Ground"))
+            {
+                shilouette.GetComponent<Renderer>().material = blue;
+                canPlace = true;
+            }
+            else
+            {
+                shilouette.GetComponent<Renderer>().material = red;
+                canPlace = false;
+            }
+
+            if (Input.GetMouseButtonDown(0) && canPlace)
             {
                 Instantiate(acutalObj, hit.point, Quaternion.Euler(-90f, camTransform.eulerAngles.y, 180f));
                 Destroy(obj.gameObject);

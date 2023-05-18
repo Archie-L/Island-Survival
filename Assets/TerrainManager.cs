@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 
 public class TerrainManager : MonoBehaviour
 {
+    [Header("Trees")]
     [SerializeField] private int terrainWidth = 100;
     [SerializeField] private int terrainLength = 100;
     [SerializeField] private float terrainHeightScale = 50f;
@@ -11,9 +14,11 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private float treeminheight;
     [SerializeField] private float treemaxheight;
     [SerializeField] private GameObject[] trees;
+    [SerializeField] private Transform treeParent;
     [SerializeField] private float treescale;
     [SerializeField] private int lowerdensity;
 
+    [Header("Terrain")]
     [SerializeField] private int perlinOctaves = 3;
     [SerializeField] private float perlinFrequency = 0.1f;
     [SerializeField] private float perlinPersistence = 0.5f;
@@ -25,9 +30,13 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private Terrain terrain;
     [SerializeField] private TerrainCollider terrainCollider;
 
+    [SerializeField] private GameObject Water;
+
+    [Header("Monuments")]
     [SerializeField] private float monumentminheight;
     [SerializeField] private float monumentmaxheight;
     [SerializeField] private GameObject[] monuments;
+    [SerializeField] private Transform monumentParent;
     [SerializeField] private float monumentscale;
     [SerializeField] private int monumentlowerdensity;
 
@@ -57,7 +66,9 @@ public class TerrainManager : MonoBehaviour
         terrainCollider.terrainData = terrainData;
 
         GenerateMonuments();
-        Invoke("GenerateTree", 0.1f);
+        Invoke("GenerateTree", 1f);
+        //Invoke("GenerateNavMesh", 2f);
+        Water.SetActive(true);
     }
 
     public void GenerateMonuments()
@@ -87,8 +98,9 @@ public class TerrainManager : MonoBehaviour
             if (Physics.Raycast(m.transform.position, -m.transform.up, out hit, 1000))
             {
                 m.transform.position = hit.point;
+                m.transform.parent = monumentParent;
             }
-            if (m.transform.position.y < monumentminheight || m.transform.position.y >= monumentmaxheight)
+            if (m.transform.position.y < monumentminheight || m.transform.position.y >= monumentmaxheight || hit.collider.tag != "Ground")
             {
                 Destroy(m);
             }
@@ -97,6 +109,13 @@ public class TerrainManager : MonoBehaviour
         var test = GameObject.FindObjectOfType<MatchTerrainToColliders>();
         test.GetComponent<MatchTerrainToColliders>(). BringTerrainToUndersideOfCollider();
         */
+    }
+
+    public NavMeshSurface surfaces;
+
+    public void GenerateNavMesh()
+    {
+        surfaces.BuildNavMesh();
     }
 
     public void GenerateTree()
@@ -125,8 +144,9 @@ public class TerrainManager : MonoBehaviour
             if (Physics.Raycast(t.transform.position, -t.transform.up, out hit, 1000))
             {
                 t.transform.position = hit.point;
+                t.transform.parent = treeParent;
             }
-            if (t.transform.position.y < treeminheight || t.transform.position.y >= treemaxheight)
+            if (t.transform.position.y < treeminheight || t.transform.position.y >= treemaxheight || hit.collider.tag != ("Ground"))
             {
                 Destroy(t);
             }
