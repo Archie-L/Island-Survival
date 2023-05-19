@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class gun : MonoBehaviour
 {
-    public Transform barrel;
+    public AudioSource shootSound;
+    public AudioClip emptySFX, shootSFX;
     public Animator anim;
     public float dmg;
     private float damage;
     private float multiplier;
     public bool shot = false;
-    private bool hasAmmo;
+    public bool hasAmmo;
     public int whatAmmoID;
     public int ammoTake;
     private InventoryManager manager;
@@ -18,6 +19,7 @@ public class gun : MonoBehaviour
     private void Start()
     {
         resetDmg();
+        shootSound = GetComponent<AudioSource>();
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
     }
 
@@ -25,10 +27,21 @@ public class gun : MonoBehaviour
     {
         hasAmmo = manager.HasItem(whatAmmoID);
 
-        if (Input.GetMouseButtonDown(0) && !shot && hasAmmo)
+        if (Input.GetMouseButtonDown(0) && !shot)
         {
-            anim.SetTrigger("shoot");
-            ShootGun();
+            if (hasAmmo)
+            {
+                anim.SetTrigger("shoot");
+                shootSound.clip = shootSFX;
+                shootSound.Play(0);
+                ShootGun();
+            }
+            if (!hasAmmo)
+            {
+                anim.SetTrigger("empty");
+                shootSound.clip = emptySFX;
+                shootSound.Play(0);
+            }
         }
     }
 
