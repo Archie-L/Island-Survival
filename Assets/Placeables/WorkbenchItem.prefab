@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb4a0d5c0204a046a23b81206d20dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  red: {fileID: 2100000, guid: cfe6a7fa11e2b5945866b88ac8d43288, type: 2}
-  blue: {fileID: 2100000, guid: 5e5c70157f7cb0149b98d52aaa8c0ba8, type: 2}
-  shilouette: {fileID: 1604224206099531545, guid: 7bb1742f93850584a839cb6f210eedcf,
+  material:
+  - {fileID: 2100000, guid: 5e5c70157f7cb0149b98d52aaa8c0ba8, type: 2}
+  - {fileID: 2100000, guid: cfe6a7fa11e2b5945866b88ac8d43288, type: 2}
+  shilouette: {fileID: 7414811649744229933, guid: 5dcfdb4cd1abd1d42a85753800707c7d,
     type: 3}
   acutalObj: {fileID: 1604224206099531545, guid: 1a157e9b1e11df74284485ccc09693f9,
     type: 3}

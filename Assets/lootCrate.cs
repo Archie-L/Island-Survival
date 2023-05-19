@@ -27,7 +27,7 @@ public class lootCrate : MonoBehaviour
             Transform slot = slots[i];
             if (slot.childCount > 0)
             {
-                Debug.Log("poo");
+
             }
         }
     }

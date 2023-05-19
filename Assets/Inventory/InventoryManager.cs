@@ -299,39 +299,49 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(GameObject item)
     {
-        for (int x = 0; x < slots.Count; x++)
+        InventoryItem newItem = item.GetComponent<InventoryItem>();
+
+        for (int i = 0; i < slots.Count; i++)
         {
-            if (isFull[x] == false)
+            Transform slot = slots[i];
+            if (slot.childCount > 0)
             {
-                Instantiate(item, slots[x]);
+                InventoryItem existingItem = slot.GetChild(0).GetComponent<InventoryItem>();
+                if (existingItem.itemData.ID == newItem.itemData.ID && existingItem.amount < existingItem.itemData.maxStack)
+                {
+                    int amountToAdd = Mathf.Min(newItem.amount, existingItem.itemData.maxStack - existingItem.amount);
+                    existingItem.amount += amountToAdd;
+                    newItem.amount -= amountToAdd;
+
+
+                    if (newItem.amount <= 0)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (isFull[i] == false)
+            {
+                GameObject newItemObject = Instantiate(item, slots[i]);
+                InventoryItem addedItem = newItemObject.GetComponent<InventoryItem>();
+
+                int amountToAdd = Mathf.Min(newItem.amount, addedItem.itemData.maxStack);
+                addedItem.amount = amountToAdd;
+                newItem.amount -= amountToAdd;
+
+
                 CheckSlots();
 
-                return;
-            }
-            else
-            {
-                Debug.Log("Slot full");
-            }
-        }
-        /*
-        for (int i = 0; i < amount; i++)
-        {
-            for (int x = 0; x < slots.Count; x++)
-            {
-                if (isFull[x] == false)
+                if (newItem.amount <= 0)
                 {
-                    Instantiate(item, slots[x]);
-                    CheckSlots();
-
                     return;
                 }
-                else
-                {
-                    Debug.Log("Slot full");
-                }
             }
         }
-        */
 
         Debug.Log("All slots full");
     }

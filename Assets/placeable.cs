@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class placeable : MonoBehaviour
 {
-    public Material red;
-    public Material blue;
+    public Material[] material;
+    Renderer rend;
+
     public GameObject shilouette;
     public GameObject acutalObj;
     public GameObject player;
@@ -16,6 +17,8 @@ public class placeable : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rend = shilouette.GetComponent<Renderer>();
+        rend.enabled = true;
     }
 
     // Update is called once per frame
@@ -42,12 +45,14 @@ public class placeable : MonoBehaviour
 
             if (hit.collider.tag == ("Ground"))
             {
-                shilouette.GetComponent<Renderer>().material = blue;
+                Debug.Log(hit.collider.tag);
+                rend.sharedMaterial = material[0];
                 canPlace = true;
             }
             else
             {
-                shilouette.GetComponent<Renderer>().material = red;
+                Debug.Log("not ground");
+                rend.sharedMaterial = material[1];
                 canPlace = false;
             }
 

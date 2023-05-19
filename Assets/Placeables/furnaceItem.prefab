@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4288091634433629606}
   - component: {fileID: 4288091634433629601}
   m_Layer: 0
-  m_Name: chestItem
+  m_Name: furnaceItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,9 +47,9 @@ MonoBehaviour:
   material:
   - {fileID: 2100000, guid: 5e5c70157f7cb0149b98d52aaa8c0ba8, type: 2}
   - {fileID: 2100000, guid: cfe6a7fa11e2b5945866b88ac8d43288, type: 2}
-  shilouette: {fileID: 6759444271173705876, guid: 0bde4785b896a6a4d8db8e6d7409af4b,
+  shilouette: {fileID: 7262422397901287694, guid: c0d23aa10d1b4594caff6c719d795a6e,
     type: 3}
-  acutalObj: {fileID: 6098952725473423059, guid: 623b75642233247489de3184da4e1b39,
+  acutalObj: {fileID: 7262422397901287694, guid: 314ce164f5df86d42b4d72fb240a6bb7,
     type: 3}
   player: {fileID: 0}
   active: 0

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0cc4eeb15c30e64387dc84c6115064e, type: 3}
-  m_Name: Cloth
+  m_Script: {fileID: 11500000, guid: 14ad6509de7a9ac42a31e20a07ded504, type: 3}
+  m_Name: Metal Ingot
   m_EditorClassIdentifier: 
-  IDs: 04000000
-  IDsAmounts: 05000000
-  outCome: {fileID: 4794089717290270715, guid: e93bfadb5f801b643bf2da24ee38eaff, type: 3}
-  outComeAmount: 2
+  ID: 13
+  name: MetalIngot
+  icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  maxStack: 99

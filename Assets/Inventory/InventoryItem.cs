@@ -10,7 +10,10 @@ public class InventoryItem : MonoBehaviour
     public TMP_Text amountTxt;
     public GameObject activeObject, emptyObject;
     private GameObject activeEmpty;
+    public GameObject output;
     public bool canBeActive;
+    public bool isFuel;
+    public bool canSmelt;
 
     public int amount = 1;
 
