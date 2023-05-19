@@ -222,41 +222,48 @@ public class InventoryManager : MonoBehaviour
 
     public void CraftItem(int[] IDs, int[] IDsAmounts, GameObject outCome, int outComeAmount)
     {
+        // Initialize arrays to keep track of collected items and their slots
         bool[] collected = new bool[IDs.Length];
         Transform[] collectedSlots = new Transform[IDs.Length];
 
+        // Iterate over the specified item IDs
         for (int x = 0; x < IDs.Length; x++)
         {
+            // Iterate over the slots in the inventory
             for (int i = 0; i < slots.Count; i++)
             {
+                // Check if the slot is full
                 if (isFull[i] == true)
                 {
+                    // Check if the item in the slot matches the current ID and has enough amount
                     if (slots[i].GetChild(0).GetComponent<InventoryItem>().itemData.ID == IDs[x] && slots[i].GetChild(0).GetComponent<InventoryItem>().amount >= IDsAmounts[x])
                     {
+                        // Mark the item as collected and store its slot
                         collected[x] = true;
                         collectedSlots[x] = slots[i].GetChild(0);
                     }
                 }
             }
         }
+
+        // Check if all required items have been collected
         for (int i = 0; i < collected.Length; i++)
         {
             if (collected[i] == false)
             {
+                // If any required item is missing, exit the method
                 return;
             }
         }
+
+        // Subtract the required amounts from the collected items
         for (int i = 0; i < collectedSlots.Length; i++)
         {
             collectedSlots[i].GetComponent<InventoryItem>().amount -= IDsAmounts[i];
         }
 
-        for (int i = 0; i < outComeAmount; i++)
-        {
-            AddItem(outCome);
-        }
 
-        //AddItem(outCome, outComeAmount);
+        AddItem(outCome, outComeAmount);
     }
 
     public bool HasItem(int itemID)
@@ -297,54 +304,56 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(GameObject item)
+    public void AddItem(GameObject item, int amount)
     {
-        InventoryItem newItem = item.GetComponent<InventoryItem>();
+        int itemID = item.GetComponent<InventoryItem>().itemData.ID;
+        int maxStack = item.GetComponent<InventoryItem>().itemData.maxStack;
 
-        for (int i = 0; i < slots.Count; i++)
+        bool itemExist = HasItem(itemID);
+
+        for (int x = 0; x < slots.Count; x++)
         {
-            Transform slot = slots[i];
-            if (slot.childCount > 0)
+            if (isFull[x] == false)
             {
-                InventoryItem existingItem = slot.GetChild(0).GetComponent<InventoryItem>();
-                if (existingItem.itemData.ID == newItem.itemData.ID && existingItem.amount < existingItem.itemData.maxStack)
+                if (itemExist && maxStack > 1)
                 {
-                    int amountToAdd = Mathf.Min(newItem.amount, existingItem.itemData.maxStack - existingItem.amount);
-                    existingItem.amount += amountToAdd;
-                    newItem.amount -= amountToAdd;
-
-
-                    if (newItem.amount <= 0)
+                    for (int i = 0; i < slots.Count; i++)
                     {
-                        return;
+                        Transform slot = slots[i];
+                        if (slot.childCount > 0)
+                        {
+                            InventoryItem existingItem = slot.GetChild(0).GetComponent<InventoryItem>();
+                            if (existingItem.itemData.ID == itemID)
+                            {
+                                int spaceAvailable = maxStack - existingItem.amount;
+                                int amountToAdd = Mathf.Min(amount, spaceAvailable);
+                                existingItem.amount += amountToAdd;
+                                amount -= amountToAdd;
+
+                                if (amount <= 0)
+                                    return; // Finished adding all items
+                            }
+                        }
                     }
                 }
-            }
-        }
-
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if (isFull[i] == false)
-            {
-                GameObject newItemObject = Instantiate(item, slots[i]);
-                InventoryItem addedItem = newItemObject.GetComponent<InventoryItem>();
-
-                int amountToAdd = Mathf.Min(newItem.amount, addedItem.itemData.maxStack);
-                addedItem.amount = amountToAdd;
-                newItem.amount -= amountToAdd;
-
-
-                CheckSlots();
-
-                if (newItem.amount <= 0)
+                else
                 {
-                    return;
+                    int amountToAdd = Mathf.Min(amount, maxStack);
+                    GameObject newItem = Instantiate(item, slots[x]);
+                    newItem.GetComponent<InventoryItem>().amount = amountToAdd;
+                    amount -= amountToAdd;
+
+                    if (amount <= 0)
+                        return; // Finished adding all items
                 }
             }
+            else
+            {
+                Debug.Log("Slot is full");
+            }
         }
-
-        Debug.Log("All slots full");
     }
+
 
     public void PickUpDropInventory()
     {

@@ -95,7 +95,10 @@ MonoBehaviour:
   activeObject: {fileID: 0}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}
+  output: {fileID: 4794089717290270715, guid: 61509be1c4e27654cae98bd89cf5aef2, type: 3}
   canBeActive: 0
+  isFuel: 0
+  canSmelt: 1
   amount: 1
 --- !u!1 &6794685813783367323
 GameObject:

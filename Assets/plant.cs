@@ -42,8 +42,7 @@ public class plant : MonoBehaviour
 
     private void AddToInv()
     {
-        manager.AddItem(item);
-        item.GetComponent<InventoryItem>().amount = Amount;
+        manager.AddItem(item, Amount);
         Destroy(this.gameObject);
     }
 }
