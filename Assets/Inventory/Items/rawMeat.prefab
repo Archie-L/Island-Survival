@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3278856926455838456}
   - component: {fileID: 1923340905733792568}
   m_Layer: 0
-  m_Name: Bandages
+  m_Name: rawMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 79b755f31fdfe4b4cababeb200c5ee12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2011dc43ff51dd941a5c9f9099ac426b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,16 +90,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae3530b6f682c942aca2459be706c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 4e95379979544604b8fed295ea2e0696, type: 2}
+  itemData: {fileID: 11400000, guid: 170335ab867d4134194033329c8060c6, type: 2}
   amountTxt: {fileID: 4112446705335307465}
-  activeObject: {fileID: 9128866051215270280, guid: e5e3aa5028f20e843b37692606c583a7,
+  activeObject: {fileID: 2069192612520504718, guid: cb53df4a1029b3e4198cef798e8e03b2,
     type: 3}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}
-  output: {fileID: 0}
+  output: {fileID: 4794089717290270715, guid: 7cd9550952cd60a4398af78ede72c057, type: 3}
   canBeActive: 1
   isFuel: 0
-  canSmelt: 0
+  canSmelt: 1
   amount: 1
 --- !u!1 &5684779485217475771
 GameObject:

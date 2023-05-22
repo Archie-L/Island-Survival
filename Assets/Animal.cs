@@ -7,8 +7,9 @@ public class Animal : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float range;
+    public float health;
     public GameObject Neck;
-
+    public GameObject meat;
     public Transform centrePoint;
 
     void Start()
@@ -18,7 +19,7 @@ public class Animal : MonoBehaviour
 
         evilCow = Random.Range(1, 100);
 
-        if(evilCow == 100)
+        if(evilCow >= 90)
         {
             Neck.GetComponent<LookAt>().enabled = true;
         }
@@ -36,6 +37,11 @@ public class Animal : MonoBehaviour
             }
         }
 
+        if(health <= 0)
+        {
+            Instantiate(meat, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+        }
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

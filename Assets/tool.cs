@@ -96,6 +96,11 @@ public class tool : MonoBehaviour
                     damage = Random.Range(5, 15) * multiplier;
                     hit.collider.GetComponent<tree>().health -= damage;
                 }
+                if(hit.collider.tag == ("animal"))
+                {
+                    damage = Random.Range(5, 15);
+                    hit.collider.GetComponent<Animal>().health -= damage;
+                }
             }
         }
     }
