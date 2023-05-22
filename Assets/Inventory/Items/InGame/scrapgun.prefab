@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 1660216685155140159}
   m_Layer: 5
   m_Name: scrapgun
-  m_TagString: Untagged
+  m_TagString: SFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   dmg: 20
   shot: 0
   hasAmmo: 0
-  whatAmmoID: 15
+  whatAmmoID: 16
   ammoTake: 1
 --- !u!95 &1660216685155140158
 Animator:

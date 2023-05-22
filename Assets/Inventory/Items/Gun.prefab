@@ -90,14 +90,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae3530b6f682c942aca2459be706c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: e3b5ed966e2750a498204a4907b11aed, type: 2}
+  itemData: {fileID: 11400000, guid: 81ebd06e125b9e24fb1c5d1a91025cc9, type: 2}
   amountTxt: {fileID: 8717203388993681231}
   activeObject: {fileID: 3165552794675844927, guid: 31804124a7ea02748a4c67123b00ef2a,
     type: 3}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}
   output: {fileID: 0}
-  canBeActive: 0
+  canBeActive: 1
   isFuel: 0
   canSmelt: 0
   amount: 1

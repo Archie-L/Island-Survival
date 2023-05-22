@@ -10,13 +10,19 @@ public class placeable : MonoBehaviour
     public GameObject shilouette;
     public GameObject acutalObj;
     public GameObject player;
+    public int ID;
     public bool active;
     private bool canPlace;
+    private InventoryManager manager;
+    public GameObject emptyObject;
+    private GameObject activeEmpty;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        activeEmpty = GameObject.Find("Activated Object");
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
         rend = shilouette.GetComponent<Renderer>();
         rend.enabled = true;
     }
@@ -60,7 +66,10 @@ public class placeable : MonoBehaviour
             {
                 Instantiate(acutalObj, hit.point, Quaternion.Euler(-90f, camTransform.eulerAngles.y, 180f));
                 Destroy(obj.gameObject);
-                Destroy(this.transform.parent.gameObject);
+                Destroy(this.transform.gameObject);
+                var Object = Instantiate(emptyObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                Object.transform.parent = activeEmpty.transform;
+                manager.RemoveItem(ID, 1);
             }
         }
     }

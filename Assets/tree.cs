@@ -7,12 +7,16 @@ public class tree : MonoBehaviour
 {
     public float health;
     public GameObject log;
+    public GameObject soundManager;
     private Slider hpBar;
+    public string type;
+    public AudioClip rockSFX, treeSFX;
 
     // Start is called before the first frame update
     void Start()
     {
         hpBar = gameObject.GetComponentInChildren<Slider>();
+        soundManager = GameObject.FindGameObjectWithTag("SFX");
     }
 
     private float lastHp;
@@ -31,6 +35,16 @@ public class tree : MonoBehaviour
 
     void BreakTree()
     {
+        if(type == "rock")
+        {
+            soundManager.GetComponent<AudioSource>().clip = rockSFX;
+        }
+        else if (type == "tree")
+        {
+            soundManager.GetComponent<AudioSource>().clip = treeSFX;
+        }
+
+        soundManager.GetComponent<AudioSource>().Play();
         Instantiate(log, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }

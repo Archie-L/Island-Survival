@@ -40,6 +40,21 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6415725781832716527}
     m_Modifications:
+    - target: {fileID: 144400123522055901, guid: 857897c9020209349ad41b4be5e45cb4,
+        type: 3}
+      propertyPath: type
+      value: rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 144400123522055901, guid: 857897c9020209349ad41b4be5e45cb4,
+        type: 3}
+      propertyPath: rockSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 3aec16e42ce645140ba39930faabdb98, type: 3}
+    - target: {fileID: 144400123522055901, guid: 857897c9020209349ad41b4be5e45cb4,
+        type: 3}
+      propertyPath: treeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a497272ff23a15846af0345435e31cc8, type: 3}
     - target: {fileID: 3868267384443957626, guid: 857897c9020209349ad41b4be5e45cb4,
         type: 3}
       propertyPath: m_RootOrder

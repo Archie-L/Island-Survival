@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7424273312708303109}
   - component: {fileID: 4812257851990938938}
   m_Layer: 0
-  m_Name: Gunpowder
+  m_Name: GunpowderPanel
   m_TagString: panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

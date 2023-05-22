@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ammo for a gun that you can also craft
+  m_text: Well it's a gun
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7424273312708303109}
   - component: {fileID: 4812257851990938938}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: GunPanel
   m_TagString: panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bullet
+  m_text: Gun
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -499,9 +499,9 @@ MonoBehaviour:
 
     Workbench
 
-    3x Metal
+    50x Wood
 
-    3x Gunpowder'
+    30x Metal'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -844,7 +844,7 @@ PrefabInstance:
         type: 3}
       propertyPath: recipe
       value: 
-      objectReference: {fileID: 11400000, guid: 138650156587d814ca8fa3f1488173c7,
+      objectReference: {fileID: 11400000, guid: 22a0af90d332cc8478a1462881476d81,
         type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []

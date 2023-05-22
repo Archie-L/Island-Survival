@@ -30,8 +30,6 @@ public class TerrainManager : MonoBehaviour
     [SerializeField] private Terrain terrain;
     [SerializeField] private TerrainCollider terrainCollider;
 
-    [SerializeField] private GameObject Water;
-
     [Header("Monuments")]
     [SerializeField] private float monumentminheight;
     [SerializeField] private float monumentmaxheight;
@@ -67,8 +65,7 @@ public class TerrainManager : MonoBehaviour
 
         GenerateMonuments();
         Invoke("GenerateTree", 1f);
-        //Invoke("GenerateNavMesh", 2f);
-        Water.SetActive(true);
+        Invoke("GenerateNavMesh", 1f);
     }
 
     public void GenerateMonuments()

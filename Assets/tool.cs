@@ -10,6 +10,13 @@ public class tool : MonoBehaviour
     private float damage;
     private float multiplier;
     public bool hasSwung;
+    public GameObject soundManager;
+    public AudioClip rockSFX, treeSFX;
+
+    private void Start()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("SFX");
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,6 +59,9 @@ public class tool : MonoBehaviour
                         multiplier = 0.1f;
                     }
 
+                    soundManager.GetComponent<AudioSource>().clip = rockSFX;
+                    soundManager.GetComponent<AudioSource>().Play();
+
                     damage = Random.Range(5, 15) * multiplier;
                     hit.collider.GetComponent<tree>().health -= damage;
                 }
@@ -79,6 +89,9 @@ public class tool : MonoBehaviour
                             multiplier = 0.1f;
                         }
                     }
+
+                    soundManager.GetComponent<AudioSource>().clip = treeSFX;
+                    soundManager.GetComponent<AudioSource>().Play();
 
                     damage = Random.Range(5, 15) * multiplier;
                     hit.collider.GetComponent<tree>().health -= damage;

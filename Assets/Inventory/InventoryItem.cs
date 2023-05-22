@@ -41,8 +41,12 @@ public class InventoryItem : MonoBehaviour
 
         if (canBeActive)
         {
+            var obj = Instantiate(activeObject, activeEmpty.transform);
+
+            /*
             var Object = Instantiate(activeObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Object.transform.parent = activeEmpty.transform;
+            */
         }
         else
         {

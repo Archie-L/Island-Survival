@@ -52,4 +52,7 @@ MonoBehaviour:
   acutalObj: {fileID: 1604224206099531545, guid: 1a157e9b1e11df74284485ccc09693f9,
     type: 3}
   player: {fileID: 0}
+  ID: 10
   active: 0
+  emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
+    type: 3}

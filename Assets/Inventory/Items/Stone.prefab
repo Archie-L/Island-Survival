@@ -92,11 +92,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 54cbcab48c2858242a7ddaf531d33112, type: 2}
   amountTxt: {fileID: 8717203388993681231}
-  activeObject: {fileID: 0}
+  activeObject: {fileID: 7739789744969186138, guid: 70e8df200e950114cb2f36ecd157bbcb,
+    type: 3}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}
   output: {fileID: 0}
-  canBeActive: 0
+  canBeActive: 1
   isFuel: 0
   canSmelt: 0
   amount: 1

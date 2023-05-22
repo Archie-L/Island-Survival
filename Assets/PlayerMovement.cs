@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -42,10 +43,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject[] invMenu;
     public GameObject craftMenu;
     public PlayerCam camScript;
+    public GameObject escapeMenu;
 
     public bool craftOpen = false;
 
     public bool invOpen = false;
+    public bool escMenu = false;
     public bool chestOpen = false;
 
     public InventoryManager manager;
@@ -69,16 +72,23 @@ public class PlayerMovement : MonoBehaviour
     private Slider hungerBar;
     private Slider thirstBar;
 
+    private AudioSource ambience;
+    private AudioSource sfx;
+
     private void Start()
     {
         hpBar = GameObject.FindGameObjectWithTag("hpBar").GetComponent<Slider>();
         hungerBar = GameObject.FindGameObjectWithTag("hungerBar").GetComponent<Slider>();
         thirstBar = GameObject.FindGameObjectWithTag("thirstBar").GetComponent<Slider>();
+        defaultGravity = Physics.gravity;
 
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        ambience = GameObject.FindGameObjectWithTag("ambience").GetComponent<AudioSource>();
+        sfx = GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioSource>();
 
         readyToJump = true;
     }
@@ -106,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        if (!invOpen)
+        if (!invOpen || !escMenu)
         {
             MyInput();
             SpeedControl();
@@ -118,7 +128,24 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!escMenu)
+            {
+                escapeMenu.SetActive(true);
+                camScript.GetComponent<PlayerCam>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+                StartCoroutine(escOpen());
+            }
+            if (escMenu)
+            {
+                CloseEscapeMenu();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !escMenu)
         {
             if (!invOpen)
             {
@@ -190,6 +217,28 @@ public class PlayerMovement : MonoBehaviour
         {
             Health = maxHealth;
         }
+    }
+
+    public void CloseEscapeMenu()
+    {
+        escapeMenu.SetActive(false);
+        camScript.GetComponent<PlayerCam>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        StartCoroutine(escClose());
+    }
+
+    IEnumerator escOpen()
+    {
+        yield return new WaitForEndOfFrame();
+        escMenu = true;
+    }
+
+    IEnumerator escClose()
+    {
+        yield return new WaitForEndOfFrame();
+        escMenu = false;
     }
 
     private void FixedUpdate()
@@ -321,23 +370,93 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+    public bool isInWater = false;
+    public bool isInLab = false;
+    private Vector3 defaultGravity;
 
-    private void OnTriggerEnter(Collider other)
+    public GameObject entranceTrigger;
+    public GameObject exitTrigger;
+
+    public GameObject waterVolume;
+
+    public AudioClip land, underwater, labs, waterSplash;
+
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Water")
+        if (other.CompareTag("Water"))
         {
-            swimming = true;
-            jumpForce = 1;
-            Physics.gravity = new Vector3(0, 0f, 0);
+            isInWater = true;
+            ActivateWaterEffects();
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Water")
+        if (other.CompareTag("Water"))
         {
-            swimming = false;
-            jumpForce = 8;
-            Physics.gravity = new Vector3(0, -9.81F, 0);
+            isInWater = false;
+            if (!isInLab)
+            {
+                DeactivateWaterEffects();
+            }
         }
+
+        if (other.CompareTag("labsEntry"))
+        {
+            isInLab = true;
+            entranceTrigger.SetActive(false);
+            exitTrigger.SetActive(true);
+            ActivateLabEffects();
+        }
+
+        if (other.CompareTag("labsExit"))
+        {
+            isInLab = false;
+            entranceTrigger.SetActive(true);
+            exitTrigger.SetActive(false);
+            DeactivateLabEffects();
+        }
+    }
+
+    private void ActivateWaterEffects()
+    {
+        Debug.Log("Water effects activated");
+        Physics.gravity = Vector3.zero;
+        ambience.clip = underwater;
+        sfx.clip = waterSplash;
+        sfx.Play(0);
+        // Add any additional water effects activation code here
+    }
+
+    private void DeactivateWaterEffects()
+    {
+        Debug.Log("Water effects deactivated");
+        Physics.gravity = defaultGravity;
+        ambience.clip = land;
+        sfx.clip = waterSplash;
+        sfx.Play(0);
+        // Add any additional water effects deactivation code here
+    }
+
+    private void ActivateLabEffects()
+    {
+        Debug.Log("Lab effects activated");
+        Physics.gravity = defaultGravity;
+        waterVolume.GetComponent<PostProcessVolume>().enabled = false;
+        ambience.clip = labs;
+        sfx.clip = waterSplash;
+        sfx.Play(0);
+        // Add any lab effects activation code here
+    }
+
+    private void DeactivateLabEffects()
+    {
+        Debug.Log("Lab effects deactivated");
+        Physics.gravity = Vector3.zero;
+        waterVolume.GetComponent<PostProcessVolume>().enabled = true;
+        ambience.clip = underwater;
+        sfx.clip = waterSplash;
+        sfx.Play(0);
+        // Add any lab effects deactivation code here
     }
 }

@@ -50,6 +50,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5142281323782194491, guid: 7034db943cc841e4c80d73f41243d44a,
+        type: 3}
+      propertyPath: type
+      value: rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142281323782194491, guid: 7034db943cc841e4c80d73f41243d44a,
+        type: 3}
+      propertyPath: rockSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 3aec16e42ce645140ba39930faabdb98, type: 3}
+    - target: {fileID: 5142281323782194491, guid: 7034db943cc841e4c80d73f41243d44a,
+        type: 3}
+      propertyPath: treeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a497272ff23a15846af0345435e31cc8, type: 3}
     - target: {fileID: 5142281323782194492, guid: 7034db943cc841e4c80d73f41243d44a,
         type: 3}
       propertyPath: m_Name
