@@ -222,23 +222,17 @@ public class InventoryManager : MonoBehaviour
 
     public void CraftItem(int[] IDs, int[] IDsAmounts, GameObject outCome, int outComeAmount)
     {
-        // Initialize arrays to keep track of collected items and their slots
         bool[] collected = new bool[IDs.Length];
         Transform[] collectedSlots = new Transform[IDs.Length];
 
-        // Iterate over the specified item IDs
         for (int x = 0; x < IDs.Length; x++)
         {
-            // Iterate over the slots in the inventory
             for (int i = 0; i < slots.Count; i++)
             {
-                // Check if the slot is full
                 if (isFull[i] == true)
                 {
-                    // Check if the item in the slot matches the current ID and has enough amount
                     if (slots[i].GetChild(0).GetComponent<InventoryItem>().itemData.ID == IDs[x] && slots[i].GetChild(0).GetComponent<InventoryItem>().amount >= IDsAmounts[x])
                     {
-                        // Mark the item as collected and store its slot
                         collected[x] = true;
                         collectedSlots[x] = slots[i].GetChild(0);
                     }
@@ -246,17 +240,14 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Check if all required items have been collected
         for (int i = 0; i < collected.Length; i++)
         {
             if (collected[i] == false)
             {
-                // If any required item is missing, exit the method
                 return;
             }
         }
 
-        // Subtract the required amounts from the collected items
         for (int i = 0; i < collectedSlots.Length; i++)
         {
             collectedSlots[i].GetComponent<InventoryItem>().amount -= IDsAmounts[i];
@@ -331,7 +322,7 @@ public class InventoryManager : MonoBehaviour
                                 amount -= amountToAdd;
 
                                 if (amount <= 0)
-                                    return; // Finished adding all items
+                                    return;
                             }
                         }
                     }
@@ -344,7 +335,7 @@ public class InventoryManager : MonoBehaviour
                     amount -= amountToAdd;
 
                     if (amount <= 0)
-                        return; // Finished adding all items
+                        return;
                 }
             }
             else

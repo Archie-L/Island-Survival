@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3278856926455838456}
   - component: {fileID: 1923340905733792568}
   m_Layer: 0
-  m_Name: RailGun
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b6bbe7ce8f028064c9cfa446c66ec615, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 866ec7ced33aa464586f6281fc473bcf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae3530b6f682c942aca2459be706c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 772f583458a50bb4e97e261abe8b595c, type: 2}
+  itemData: {fileID: 11400000, guid: 91731ddc71964464aa053badf6e8371d, type: 2}
   amountTxt: {fileID: 4112446705335307465}
-  activeObject: {fileID: 1462649811865001836, guid: bda1261b110401443a0e75c6a674174b,
+  activeObject: {fileID: 1462649811865001836, guid: b4d8a7d87aa6ae04d8cb580d2d141859,
     type: 3}
   emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
     type: 3}

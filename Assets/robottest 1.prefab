@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f358afa601951043929220210f64259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: arm/leg
+  part: torso
 --- !u!1 &2435894502515900458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,6 +1209,11 @@ MonoBehaviour:
   range: 20
   health: 100
   centrePoint: {fileID: 7321606527272651401}
+  anim: {fileID: 0}
+  player: {fileID: 0}
+  patrolling: 0
+  follow: 0
+  points: []
 --- !u!195 &7984955758455607349
 NavMeshAgent:
   m_ObjectHideFlags: 0

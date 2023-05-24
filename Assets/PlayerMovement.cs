@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public Animator anim;
+
     [Header("Inventory")]
     public GameObject[] invMenu;
     public GameObject craftMenu;
@@ -104,12 +106,31 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.tag == ("Chest") && Input.GetKeyDown(KeyCode.E))
             {
-                chest = hit.transform.GetChild(0);
-                manager.currentChest = chest.transform.GetChild(0);
-                manager.SetChestIDs();
-                chest.gameObject.SetActive(true);
-                chestOpen = true;
-                OpenInv();
+                if (hit.collider.GetComponent<timer>() != null)
+                {
+                    if (hit.collider.GetComponent<timer>().TimerFinished == false)
+                    {
+                        hit.collider.GetComponent<timer>().StartTimer();
+                    }
+                    else
+                    {
+                        chest = hit.transform.GetChild(0);
+                        manager.currentChest = chest.transform.GetChild(0);
+                        manager.SetChestIDs();
+                        chest.gameObject.SetActive(true);
+                        chestOpen = true;
+                        OpenInv();
+                    }
+                }
+                else
+                {
+                    chest = hit.transform.GetChild(0);
+                    manager.currentChest = chest.transform.GetChild(0);
+                    manager.SetChestIDs();
+                    chest.gameObject.SetActive(true);
+                    chestOpen = true;
+                    OpenInv();
+                }
             }
         }
 
@@ -184,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(thirsty || hungry)
             {
-                Health -= 5;
+                Health -= 1;
             }
         }
 
@@ -217,6 +238,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Health = maxHealth;
         }
+        if(Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        anim.SetTrigger("die");
     }
 
     public void CloseEscapeMenu()
@@ -247,16 +277,6 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayer();
         }
-    }
-
-    void HungerManager()
-    {
-        
-    }
-
-    void WaterManager()
-    {
-
     }
 
     public void OpenInv()

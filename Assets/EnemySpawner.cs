@@ -42,6 +42,14 @@ public class EnemySpawner : MonoBehaviour
         float z = Random.Range(0f, terrainLength);
         float y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0f, z)) + terrainTransform.position.y;
 
+        // Ensure the enemy spawns at a height of 24 or above
+        while (y < 24f)
+        {
+            x = Random.Range(0f, terrainWidth);
+            z = Random.Range(0f, terrainLength);
+            y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0f, z)) + terrainTransform.position.y;
+        }
+
         return new Vector3(x, y, z);
     }
 
@@ -63,4 +71,3 @@ public class EnemySpawner : MonoBehaviour
         currentEnemies--;
     }
 }
-

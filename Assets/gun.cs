@@ -15,6 +15,7 @@ public class gun : MonoBehaviour
     public int whatAmmoID;
     public int ammoTake;
     private InventoryManager manager;
+    public float wait;
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class gun : MonoBehaviour
                 anim.SetTrigger("shoot");
                 shootSound.clip = shootSFX;
                 shootSound.Play(0);
-                ShootGun();
+                Invoke("ShootGun", wait);
             }
             if (!hasAmmo)
             {
@@ -55,6 +56,7 @@ public class gun : MonoBehaviour
         if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 50))
         {
             bool hitThing = false;
+            bool hitAnimal = false;
 
             if (hit.collider.GetComponent<BodyPart>().part == "head")
             {
@@ -74,11 +76,24 @@ public class gun : MonoBehaviour
                 Debug.Log("arm/leg");
                 hitThing = true;
             }
+            else if (hit.collider.GetComponent<BodyPart>().part == "animal")
+            {
+                multiplier = 1f;
+                hitThing = true;
+                hitAnimal = true;
+            }
 
             if (hitThing)
             {
                 damage = Random.Range(damage - 5, damage + 5) * multiplier;
-                hit.collider.transform.root.GetComponent<Enemy>().health -= damage;
+                if (hitAnimal)
+                {
+                    hit.collider.transform.root.GetComponent<Animal>().health -= damage;
+                }
+                else
+                {
+                    hit.collider.transform.root.GetComponent<Enemy>().health -= damage;
+                }
             }
 
             resetDmg();

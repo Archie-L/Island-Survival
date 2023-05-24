@@ -65,7 +65,7 @@ public class TerrainManager : MonoBehaviour
 
         GenerateMonuments();
         Invoke("GenerateTree", 1f);
-        //Invoke("GenerateNavMesh", 1f);
+        Invoke("GenerateNavMesh", 1f);
     }
 
     public void GenerateMonuments()
