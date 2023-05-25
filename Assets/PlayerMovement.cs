@@ -189,6 +189,14 @@ public class PlayerMovement : MonoBehaviour
             craftOpen = false;
         }
 
+        if (swimming)
+        {
+            jumpForce = 2f;
+        }
+        if (!swimming)
+        {
+            jumpForce = 8f;
+        }
 
         hpBar.value = Health;
         hungerBar.value = Hunger;
@@ -242,6 +250,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
     }
 
     void Die()
@@ -351,6 +364,14 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+        if (Input.GetKey(KeyCode.LeftControl) && readyToJump && swimming)
+        {
+            readyToJump = false;
+
+            ReverseJump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private void MovePlayer()
@@ -385,6 +406,13 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ReverseJump()
+    {
+        // reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(-transform.up * jumpForce, ForceMode.Impulse);
     }
     private void ResetJump()
     {
@@ -445,7 +473,7 @@ public class PlayerMovement : MonoBehaviour
         ambience.clip = underwater;
         sfx.clip = waterSplash;
         sfx.Play(0);
-        // Add any additional water effects activation code here
+        swimming = true;
     }
 
     private void DeactivateWaterEffects()
@@ -455,7 +483,7 @@ public class PlayerMovement : MonoBehaviour
         ambience.clip = land;
         sfx.clip = waterSplash;
         sfx.Play(0);
-        // Add any additional water effects deactivation code here
+        swimming = false;
     }
 
     private void ActivateLabEffects()
@@ -466,7 +494,7 @@ public class PlayerMovement : MonoBehaviour
         ambience.clip = labs;
         sfx.clip = waterSplash;
         sfx.Play(0);
-        // Add any lab effects activation code here
+        swimming = false;
     }
 
     private void DeactivateLabEffects()
@@ -477,6 +505,6 @@ public class PlayerMovement : MonoBehaviour
         ambience.clip = underwater;
         sfx.clip = waterSplash;
         sfx.Play(0);
-        // Add any lab effects deactivation code here
+        swimming = true;
     }
 }

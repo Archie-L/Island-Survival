@@ -5434,6 +5434,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   orientation: {fileID: 8902619577355270107}
+  anim: {fileID: 0}
   invMenu:
   - {fileID: 8902619576538621264}
   craftMenu: {fileID: 0}
@@ -5454,6 +5455,15 @@ MonoBehaviour:
   hungry: 0
   thirsty: 0
   chest: {fileID: 0}
+  isInWater: 0
+  isInLab: 0
+  entranceTrigger: {fileID: 0}
+  exitTrigger: {fileID: 0}
+  waterVolume: {fileID: 0}
+  land: {fileID: 0}
+  underwater: {fileID: 0}
+  labs: {fileID: 0}
+  waterSplash: {fileID: 0}
 --- !u!1 &8902619577221491066
 GameObject:
   m_ObjectHideFlags: 0
@@ -5725,7 +5735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8902619577331506228}
   m_Layer: 0
-  m_Name: Prefab
+  m_Name: John Bean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

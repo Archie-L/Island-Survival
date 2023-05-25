@@ -16,6 +16,7 @@ public class gun : MonoBehaviour
     public int ammoTake;
     private InventoryManager manager;
     public float wait;
+    public LayerMask ignore;
 
     private void Start()
     {
@@ -53,7 +54,7 @@ public class gun : MonoBehaviour
         Transform camTransform = Camera.main.transform;
         RaycastHit hit;
 
-        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 50))
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 50, ~ignore))
         {
             bool hitThing = false;
             bool hitAnimal = false;

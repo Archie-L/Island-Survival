@@ -101,6 +101,11 @@ public class tool : MonoBehaviour
                     damage = Random.Range(5, 15);
                     hit.collider.GetComponent<Animal>().health -= damage;
                 }
+                if (hit.collider.tag == ("robot"))
+                {
+                    damage = Random.Range(5, 15);
+                    hit.collider.GetComponent<Enemy>().health -= damage;
+                }
             }
         }
     }

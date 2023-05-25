@@ -58,7 +58,10 @@ MonoBehaviour:
   hasAmmo: 0
   whatAmmoID: 24
   ammoTake: 1
-  wait: 0.3
+  wait: 0
+  ignore:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!95 &1462649811865001839
 Animator:
   serializedVersion: 4
