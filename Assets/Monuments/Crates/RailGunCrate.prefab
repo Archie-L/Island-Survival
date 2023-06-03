@@ -112,6 +112,13 @@ MonoBehaviour:
   TimerOn: 0
   TimerFinished: 0
   TimerTxt: {fileID: 2396037833056604624}
+  enemyPrefab: {fileID: 7984955758455607347, guid: f6d1fd08e9048e54bb4452d0cf036a06,
+    type: 3}
+  crateTransform: {fileID: 727020943427535654}
+  playerTransform: {fileID: 0}
+  spawnDistance: 60
+  minEnemyCount: 3
+  maxEnemyCount: 6
 --- !u!65 &1899896094676711498
 BoxCollider:
   m_ObjectHideFlags: 0

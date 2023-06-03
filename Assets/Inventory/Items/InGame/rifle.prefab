@@ -53,7 +53,7 @@ MonoBehaviour:
   emptySFX: {fileID: 8300000, guid: c81eba3db0d944f46be0dd6d9eacee3c, type: 3}
   shootSFX: {fileID: 8300000, guid: 96209ffd04a3ef24cacc84c1288315ff, type: 3}
   anim: {fileID: 1462649811865001839}
-  dmg: 30
+  dmg: 40
   shot: 0
   hasAmmo: 0
   whatAmmoID: 24
@@ -61,7 +61,7 @@ MonoBehaviour:
   wait: 0
   ignore:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
 --- !u!95 &1462649811865001839
 Animator:
   serializedVersion: 4

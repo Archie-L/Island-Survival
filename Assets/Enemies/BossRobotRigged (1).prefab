@@ -573,7 +573,7 @@ Transform:
   - {fileID: 2047114947475260710}
   - {fileID: 2047114946055026729}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2047114946843281784
 NavMeshAgent:
@@ -615,7 +615,7 @@ MonoBehaviour:
   centrePoint: {fileID: 2047114946843281791}
   anim: {fileID: 2047114946843281786}
   player: {fileID: 0}
-  patrolling: 0
+  patrolling: 1
   follow: 0
   points:
   - {fileID: 0}

@@ -1581,7 +1581,7 @@ MonoBehaviour:
   range: 20
   health: 100
   centrePoint: {fileID: 7321606527272651401}
-  anim: {fileID: 0}
+  anim: {fileID: 7984955758455607348}
   player: {fileID: 0}
   patrolling: 0
   follow: 0

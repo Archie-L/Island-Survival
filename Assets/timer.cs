@@ -22,7 +22,7 @@ public class timer : MonoBehaviour
     {
         if (TimerOn)
         {
-            if(TimeLeft > 0)
+            if (TimeLeft > 0)
             {
                 TimeLeft -= Time.deltaTime;
                 UpdateTimer(TimeLeft);

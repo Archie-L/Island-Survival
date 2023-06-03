@@ -294,7 +294,7 @@ MonoBehaviour:
   wait: 0
   ignore:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
 --- !u!95 &1660216685155140158
 Animator:
   serializedVersion: 4

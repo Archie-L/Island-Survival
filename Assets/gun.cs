@@ -89,11 +89,11 @@ public class gun : MonoBehaviour
                 damage = Random.Range(damage - 5, damage + 5) * multiplier;
                 if (hitAnimal)
                 {
-                    hit.collider.transform.root.GetComponent<Animal>().health -= damage;
+                    hit.collider.transform.GetComponentInParent<Animal>().health -= damage;
                 }
                 else
                 {
-                    hit.collider.transform.root.GetComponent<Enemy>().health -= damage;
+                    hit.collider.transform.GetComponentInParent<Enemy>().health -= damage;
                 }
             }
 

@@ -20,11 +20,17 @@ public class BandagesScript : MonoBehaviour
     public bool forWater;
     public int increasewater;
 
+    public GameObject emptyObject;
+    private GameObject activeEmpty;
+    private GameObject thisObj;
+
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        activeEmpty = GameObject.Find("Activated Object");
+        thisObj = this.gameObject;
     }
 
     // Update is called once per frame
@@ -32,26 +38,30 @@ public class BandagesScript : MonoBehaviour
     {
         hasAmmo = manager.HasItem(whatAmmoID);
 
-        if (Input.GetMouseButtonDown(0) && !inUse)
+        if (!hasAmmo)
         {
-            if (hasAmmo)
-            {
-                anim.SetTrigger("use");
-                manager.RemoveItem(whatAmmoID, ammoTake);
+            var Object = Instantiate(emptyObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Object.transform.parent = activeEmpty.transform;
+            Destroy(thisObj);
+        }
 
-                if (forHP)
-                {
-                    player.Health += increasehealth;
-                }
-                else if(forFood)
-                {
-                    player.Water += increasewater;
-                    player.Hunger += increasefood;
-                }
-                else if(forWater)
-                {
-                    player.Water += increasewater;
-                }
+        if (Input.GetMouseButtonDown(0) && !inUse && hasAmmo)
+        {
+            anim.SetTrigger("use");
+            manager.RemoveItem(whatAmmoID, ammoTake);
+
+            if (forHP)
+            {
+                player.Health += increasehealth;
+            }
+            else if (forFood)
+            {
+                player.Water += increasewater;
+                player.Hunger += increasefood;
+            }
+            else if (forWater)
+            {
+                player.Water += increasewater;
             }
         }
     }

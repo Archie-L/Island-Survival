@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,17 +63,20 @@ public class PlayerMovement : MonoBehaviour
     public int maxHunger;
     public int Water;
     public int maxWater;
+    public int oxygen;
+    public int maxOxygen;
 
     private float nextActionTime = 0.0f;
     public float period = 1f;
 
     public bool hungry;
     public bool thirsty;
-
+    public bool drowning;
 
     private Slider hpBar;
     private Slider hungerBar;
     private Slider thirstBar;
+    private Slider o2Bar;
 
     private AudioSource ambience;
     private AudioSource sfx;
@@ -82,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         hpBar = GameObject.FindGameObjectWithTag("hpBar").GetComponent<Slider>();
         hungerBar = GameObject.FindGameObjectWithTag("hungerBar").GetComponent<Slider>();
         thirstBar = GameObject.FindGameObjectWithTag("thirstBar").GetComponent<Slider>();
+        o2Bar = GameObject.FindGameObjectWithTag("o2Bar").GetComponent<Slider>();
         defaultGravity = Physics.gravity;
 
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
@@ -92,7 +97,11 @@ public class PlayerMovement : MonoBehaviour
         ambience = GameObject.FindGameObjectWithTag("ambience").GetComponent<AudioSource>();
         sfx = GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioSource>();
 
+        ambience.clip = land;
+        ambience.Play(0);
+
         readyToJump = true;
+        anim.enabled = false;
     }
 
     public Transform chest;
@@ -192,15 +201,19 @@ public class PlayerMovement : MonoBehaviour
         if (swimming)
         {
             jumpForce = 2f;
+            o2Bar.transform.parent.gameObject.SetActive(true);
         }
         if (!swimming)
         {
             jumpForce = 8f;
+            o2Bar.value = o2Bar.maxValue;
+            o2Bar.transform.parent.gameObject.SetActive(false);
         }
 
         hpBar.value = Health;
         hungerBar.value = Hunger;
         thirstBar.value = Water;
+        o2Bar.value = oxygen;
 
         if (Time.time > nextActionTime)
         {
@@ -211,7 +224,15 @@ public class PlayerMovement : MonoBehaviour
                 Hunger -= 1;
                 Water -= 1;
             }
-            if(thirsty || hungry)
+            if (swimming)
+            {
+                oxygen -= 1;
+            }
+            if (!swimming)
+            {
+                oxygen = maxOxygen;
+            }
+            if (thirsty || hungry || drowning)
             {
                 Health -= 1;
             }
@@ -225,6 +246,10 @@ public class PlayerMovement : MonoBehaviour
         {
             hungry = true;
         }
+        if (oxygen <= 0)
+        {
+            drowning = true;
+        }
         if (Water > 0)
         {
             thirsty = false;
@@ -233,8 +258,12 @@ public class PlayerMovement : MonoBehaviour
         {
             hungry = false;
         }
+        if (oxygen > 0)
+        {
+            drowning = false;
+        }
 
-        if(Water > maxWater)
+        if (Water > maxWater)
         {
             Water = maxWater;
         }
@@ -259,7 +288,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
+        anim.enabled = true;
         anim.SetTrigger("die");
+        Invoke("resetGame", 10f);
+    }
+
+    void resetGame()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void CloseEscapeMenu()
@@ -471,6 +507,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Water effects activated");
         Physics.gravity = Vector3.zero;
         ambience.clip = underwater;
+        ambience.Play(0);
         sfx.clip = waterSplash;
         sfx.Play(0);
         swimming = true;
@@ -481,6 +518,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Water effects deactivated");
         Physics.gravity = defaultGravity;
         ambience.clip = land;
+        ambience.Play(0);
         sfx.clip = waterSplash;
         sfx.Play(0);
         swimming = false;
@@ -492,6 +530,7 @@ public class PlayerMovement : MonoBehaviour
         Physics.gravity = defaultGravity;
         waterVolume.GetComponent<PostProcessVolume>().enabled = false;
         ambience.clip = labs;
+        ambience.Play(0);
         sfx.clip = waterSplash;
         sfx.Play(0);
         swimming = false;
@@ -503,6 +542,7 @@ public class PlayerMovement : MonoBehaviour
         Physics.gravity = Vector3.zero;
         waterVolume.GetComponent<PostProcessVolume>().enabled = true;
         ambience.clip = underwater;
+        ambience.Play(0);
         sfx.clip = waterSplash;
         sfx.Play(0);
         swimming = true;

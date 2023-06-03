@@ -27,12 +27,14 @@ public class Enemy : MonoBehaviour
     private int shotsFired;
 
     public LayerMask ignore;
+    private monumentManager monu;
 
     private void Start()
     {
         look = GetComponentInChildren<LookAt>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        monu = GetComponentInParent<monumentManager>();
         agent.stoppingDistance = 7;
 
         if (patrolling)
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            monu.spawnedCrates.Remove(this.gameObject);
             Destroy(this.gameObject);
         }
 
@@ -184,7 +187,7 @@ public class Enemy : MonoBehaviour
                 look.enabled = true;
             }
         }
-        if (distance > 40 && follow)
+        if (distance > 100 && follow)
         {
             agent.stoppingDistance = 0;
 

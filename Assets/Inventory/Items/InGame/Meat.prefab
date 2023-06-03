@@ -130,3 +130,5 @@ MonoBehaviour:
   increasefood: 50
   forWater: 0
   increasewater: 0
+  emptyObject: {fileID: 4751229899201415223, guid: 6d895903960f20b46b40c6a94a7b048f,
+    type: 3}

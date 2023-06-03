@@ -1377,8 +1377,8 @@ MonoBehaviour:
   centrePoint: {fileID: 7615459272296999169}
   anim: {fileID: 7125921049350763452}
   player: {fileID: 0}
-  patrolling: 0
-  follow: 1
+  patrolling: 1
+  follow: 0
   points: []
   isBoss: 0
   shooting: 0
