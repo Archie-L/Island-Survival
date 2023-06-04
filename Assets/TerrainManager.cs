@@ -6,6 +6,8 @@ using Unity.AI.Navigation;
 
 public class TerrainManager : MonoBehaviour
 {
+    public GameObject player;
+
     [Header("Trees")]
     [SerializeField] private int terrainWidth = 100;
     [SerializeField] private int terrainLength = 100;
@@ -64,8 +66,15 @@ public class TerrainManager : MonoBehaviour
         terrainCollider.terrainData = terrainData;
 
         GenerateMonuments();
-        Invoke("GenerateTree", 1f);
-        Invoke("GenerateNavMesh", 1f);
+        Invoke("GenerateTree", 1);
+        Invoke("GenerateNavMesh", 2);
+    }
+
+    private IEnumerator spawnPlayer(int waitTime)
+    {
+        new WaitForSeconds(waitTime);
+        player.gameObject.SetActive(true);
+        yield break;
     }
 
     public void GenerateMonuments()
@@ -113,6 +122,7 @@ public class TerrainManager : MonoBehaviour
     public void GenerateNavMesh()
     {
         surfaces.BuildNavMesh();
+        StartCoroutine(spawnPlayer(1));
     }
 
     public void GenerateTree()

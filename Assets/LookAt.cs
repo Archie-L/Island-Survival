@@ -15,6 +15,8 @@ public class LookAt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
         transform.LookAt(target);
         transform.rotation *= Quaternion.Euler(customRotation);
     }

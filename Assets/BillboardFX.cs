@@ -8,14 +8,11 @@ public class BillboardFX : MonoBehaviour
     private GameObject player;
     public GameObject panel;
 
-    void Start()
+    void Update()
     {
         camTransform = Camera.main.transform;
         player = GameObject.FindGameObjectWithTag("Player");
-    }
 
-    void Update()
-    {
         float distance;
         distance = Vector3.Distance(player.transform.position, transform.position);
 
