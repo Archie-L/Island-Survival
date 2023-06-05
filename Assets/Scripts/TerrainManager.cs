@@ -105,16 +105,13 @@ public class TerrainManager : MonoBehaviour
             {
                 m.transform.position = hit.point;
                 m.transform.parent = monumentParent;
+                m.GetComponentInChildren<MatchTerrainToColliders>().BringTerrainToUndersideOfCollider();
             }
             if (m.transform.position.y < monumentminheight || m.transform.position.y >= monumentmaxheight || hit.collider.tag != "Ground")
             {
                 Destroy(m);
             }
         }
-        /*
-        var test = GameObject.FindObjectOfType<MatchTerrainToColliders>();
-        test.GetComponent<MatchTerrainToColliders>(). BringTerrainToUndersideOfCollider();
-        */
     }
 
     public NavMeshSurface surfaces;

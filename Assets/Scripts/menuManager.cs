@@ -9,11 +9,18 @@ public class menuManager : MonoBehaviour
     public bool isMainScreen;
     public GameObject player;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void ResumeGame()
     {
         if (isMainScreen)
         {
-            SceneManager.LoadScene("newWorld");
+            //SceneManager.LoadScene("newWorld");
+            gameManager.instance.LoadGame();
         }
         else
         {

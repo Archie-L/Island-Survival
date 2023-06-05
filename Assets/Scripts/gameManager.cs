@@ -20,7 +20,7 @@ public class gameManager : MonoBehaviour
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     public void LoadGame()
     {
-        loadingScreen.gameObject.SetActive(true);
+        loadingScreen.SetActive(true);
 
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE));
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAP, LoadSceneMode.Additive));
@@ -35,5 +35,7 @@ public class gameManager : MonoBehaviour
                 yield return null;
             }
         }
+
+        loadingScreen.gameObject.SetActive(false);
     }
 }

@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3024226595140103340}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.0000009536743, z: -0.01999998}
+  m_LocalPosition: {x: 0, y: -0, z: -0.01999998}
   m_LocalScale: {x: 1514.9601, y: 996.76, z: 2000}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -230,8 +230,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 320796940341366104}
   - {fileID: 8351811548015547874}
+  - {fileID: 320796940341366104}
   - {fileID: 7053677241277059110}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -258,6 +258,8 @@ MonoBehaviour:
   - {fileID: 1480077261598407101, guid: dc89e1683b9c11e429f3a1b3c3115a2b, type: 3}
   - {fileID: 512153125114044, guid: 2d8e7fc33faa5c7469130b64dabc7a60, type: 3}
   respawnTime: 180
+  forEnemy: 0
+  amount: 0
   spawnedCrates: []
 --- !u!1 &4324809679819899826
 GameObject:
