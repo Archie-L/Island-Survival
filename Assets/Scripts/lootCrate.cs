@@ -26,20 +26,6 @@ public class lootCrate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
-
-        if (player.activeSelf == true)
-        {
-            for (int i = 0; i < 1; i++)
-            {
-                for (int x = 0; x < inventorySlotHolder.childCount; x++)
-                {
-                    slots.Add(inventorySlotHolder.GetChild(x));
-                }
-            }
-        }
-
         bool allSlotsEmpty = true;
 
         for (int i = 0; i < slots.Count; i++)

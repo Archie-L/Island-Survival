@@ -9,6 +9,7 @@ public class plant : MonoBehaviour
     public InventoryManager manager;
     public GameObject item;
     public GameObject txt;
+    public GameObject thisOBJ;
 
     private void Start()
     {
@@ -43,6 +44,6 @@ public class plant : MonoBehaviour
     private void AddToInv()
     {
         manager.AddItem(item, Amount);
-        Destroy(this.gameObject);
+        Destroy(thisOBJ);
     }
 }

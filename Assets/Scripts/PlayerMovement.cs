@@ -102,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
 
         readyToJump = true;
         anim.enabled = false;
+
+        //gameManager.instance.LoadGame();
     }
 
     public Transform chest;

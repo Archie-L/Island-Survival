@@ -49,8 +49,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
         CheckDist();
 
         if (health <= 0)

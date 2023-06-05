@@ -2676,7 +2676,7 @@ PrefabInstance:
     - target: {fileID: 8902619576539473377, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902619576637707741, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
@@ -2716,7 +2716,7 @@ PrefabInstance:
     - target: {fileID: 8902619576650012617, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902619576650012619, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
@@ -2987,7 +2987,7 @@ PrefabInstance:
     - target: {fileID: 8902619577202847243, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902619577202847243, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
@@ -3087,7 +3087,12 @@ PrefabInstance:
     - target: {fileID: 8902619577331506229, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902619577331506229, guid: dc9fe7769a7324046943da3a366b9c6c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8902619577410499115, guid: dc9fe7769a7324046943da3a366b9c6c,
         type: 3}
@@ -3189,6 +3194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &412480329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8902619576539473377, guid: dc9fe7769a7324046943da3a366b9c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 397491795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413073751
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,6 +4476,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &798088829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8902619577202847243, guid: dc9fe7769a7324046943da3a366b9c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 397491795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f20ab04316cb7499d6e2c86bcfaed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &829870786
 GameObject:
   m_ObjectHideFlags: 0
@@ -5496,6 +5519,12 @@ MonoBehaviour:
   forEnemy: 0
   amount: 0
   spawnedCrates: []
+--- !u!1 &1207430061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8902619576650012617, guid: dc9fe7769a7324046943da3a366b9c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 397491795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1209104753
 GameObject:
   m_ObjectHideFlags: 0
@@ -7450,7 +7479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347e17a5672293844a5047b334f56620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2100687972}
+  player: {fileID: 412480329}
+  playerCam: {fileID: 1207430061}
+  playerMove: {fileID: 798088829}
   terrainWidth: 1500
   terrainLength: 1500
   terrainHeightScale: 50

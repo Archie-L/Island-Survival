@@ -7,6 +7,8 @@ using Unity.AI.Navigation;
 public class TerrainManager : MonoBehaviour
 {
     public GameObject player;
+    public GameObject playerCam;
+    public PlayerMovement playerMove;
 
     [Header("Trees")]
     [SerializeField] private int terrainWidth = 100;
@@ -74,6 +76,8 @@ public class TerrainManager : MonoBehaviour
     {
         new WaitForSeconds(waitTime);
         player.gameObject.SetActive(true);
+        playerCam.gameObject.SetActive(true);
+        playerMove.enabled = true;
         yield break;
     }
 
@@ -203,8 +207,6 @@ public class TerrainManager : MonoBehaviour
                 heightmap[x, z] = height;
             }
         }
-
-
 
         return heightmap;
     }
