@@ -16,7 +16,7 @@ public class itemPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.transform.parent.tag == "Player")
         {
             Debug.Log("hit");
             AddToInv();

@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject activeEmpty;
 
 
-    private void Start()
+    private void Awake()
     {
         InitializeInventory();
         SetSlotsIDs();

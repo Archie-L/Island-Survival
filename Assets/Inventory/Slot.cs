@@ -18,7 +18,9 @@ public class Slot : MonoBehaviour
 
     private void Update()
     {
-        if(transform.childCount > 0)
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
+
+        if (transform.childCount > 0)
         {
             if (transform.GetChild(0).GetComponent<InventoryItem>().amount <= 0)
             {

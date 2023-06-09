@@ -8,6 +8,7 @@ public class TerrainManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject playerCam;
+    public GameObject loadingCam;
     public PlayerMovement playerMove;
 
     [Header("Trees")]
@@ -51,6 +52,8 @@ public class TerrainManager : MonoBehaviour
 
         terrainSeed = Random.Range(0, 10000);
 
+        gameManager.instance.removeEventSys();
+
         GenerateTerrain();
     }
 
@@ -75,8 +78,10 @@ public class TerrainManager : MonoBehaviour
     private IEnumerator spawnPlayer(int waitTime)
     {
         new WaitForSeconds(waitTime);
+        gameManager.instance.closeScreen();
         player.gameObject.SetActive(true);
         playerCam.gameObject.SetActive(true);
+        loadingCam.gameObject.SetActive(false);
         playerMove.enabled = true;
         yield break;
     }

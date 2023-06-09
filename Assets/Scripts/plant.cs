@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class plant : MonoBehaviour
 {
@@ -20,6 +19,8 @@ public class plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<InventoryManager>();
+
         Transform camTransform = Camera.main.transform;
         RaycastHit hit;
 

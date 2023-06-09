@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public AudioSource shootSound;
+    public AudioClip shootSFX;
     public NavMeshAgent agent;
     public float range;
     public float health;
@@ -36,6 +38,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         monu = GetComponentInParent<monumentManager>();
         agent.stoppingDistance = 7;
+        shootSound = GetComponent<AudioSource>();
 
         if (patrolling)
         {
@@ -205,6 +208,9 @@ public class Enemy : MonoBehaviour
 
     private void Shoot()
     {
+        shootSound.clip = shootSFX;
+        shootSound.Play(0);
+
         Ray ray = new Ray(transform.position, (player.transform.position - transform.position).normalized);
         RaycastHit hit;
 
@@ -212,7 +218,7 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(ShowMuzzleFlash());
 
-            if (hit.collider.tag == "Player")
+            if (hit.collider.transform.parent.tag == "Player")
             {
                 Debug.Log("Enemy shot at the player!");
 

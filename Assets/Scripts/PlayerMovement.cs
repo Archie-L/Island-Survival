@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     public int oxygen;
     public int maxOxygen;
 
-    private float nextActionTime = 0.0f;
+    private float timer = 0.0f;
     public float period = 1f;
 
     public bool hungry;
@@ -103,7 +103,8 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         anim.enabled = false;
 
-        //gameManager.instance.LoadGame();
+
+        timer = period;
     }
 
     public Transform chest;
@@ -217,9 +218,11 @@ public class PlayerMovement : MonoBehaviour
         thirstBar.value = Water;
         o2Bar.value = oxygen;
 
-        if (Time.time > nextActionTime)
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
         {
-            nextActionTime += period;
+            timer = period;
 
             if (!thirsty || !hungry)
             {
@@ -297,7 +300,7 @@ public class PlayerMovement : MonoBehaviour
 
     void resetGame()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("loadingScene");
     }
 
     public void CloseEscapeMenu()

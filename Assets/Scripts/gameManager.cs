@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
     public GameObject loadingScreen;
+    public GameObject eventSys;
 
     private void Awake()
     {
@@ -34,8 +35,18 @@ public class gameManager : MonoBehaviour
             {
                 yield return null;
             }
-
-            loadingScreen.gameObject.SetActive(false);
         }
+
+        loadingScreen.gameObject.SetActive(false);
+    }
+
+    public void closeScreen()
+    {
+        loadingScreen.gameObject.SetActive(false);
+    }
+
+    public void removeEventSys()
+    {
+        eventSys.SetActive(false);
     }
 }
